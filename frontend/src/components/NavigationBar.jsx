@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function NavigationBar() {
   return (
     <BootstrapNavbar bg="white" expand="lg" className="border-bottom">
-      <Container fluid>
+      <Container>
         <BootstrapNavbar.Brand
           as={Link}
           to="/"
@@ -27,9 +27,6 @@ function NavigationBar() {
             </Nav.Link>
             <Nav.Link as={Link} to="/about" className="text-dark">
               SOBRE NOSOTROS
-            </Nav.Link>
-            <Nav.Link as={Link} to="/contact" className="text-dark">
-              CONTACTO
             </Nav.Link>
           </Nav>
         </BootstrapNavbar.Collapse>
