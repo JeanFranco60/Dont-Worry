@@ -6,7 +6,7 @@ function NavigationBar() {
     <BootstrapNavbar bg="light" expand="lg" className="border-bottom">
       <Container>
         <BootstrapNavbar.Brand href="#home" className="fw-bold">
-          NEXUS
+          Dont't Worry
         </BootstrapNavbar.Brand>
         <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
         <BootstrapNavbar.Collapse id="basic-navbar-nav">

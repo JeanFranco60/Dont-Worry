@@ -8,7 +8,7 @@ function Footer() {
         <Container>
           <Row>
             <Col md={4} className="mb-3 mb-md-0">
-              <h5 className="mb-3">NEXUS</h5>
+              <h5 className="mb-3">Dont't Worry</h5>
               <p className="text-muted small">Elevando el estilo masculino con accesorios únicos y modernos desde 2024.</p>
             </Col>
             <Col md={4} className="mb-3 mb-md-0">
@@ -42,7 +42,7 @@ function Footer() {
             </Col>
           </Row>
           <hr className="my-4" />
-          <p className="text-center text-muted small mb-0">© 2024 NEXUS. Todos los derechos reservados.</p>
+          <p className="text-center text-muted small mb-0">© 2024 Dont't Worry. Todos los derechos reservados.</p>
         </Container>
       </footer>
   )

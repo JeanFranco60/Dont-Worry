@@ -9,11 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const App = () => {
     return (
         <Router>
-            <nav>
-                <Link to="/">Inicio</Link> | 
-                <Link to="/about">Sobre Nosotros</Link> | 
-                <Link to="/products">Productos</Link>
-            </nav>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
