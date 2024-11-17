@@ -1,20 +1,36 @@
 import React from "react";
-import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
+import { Navbar as BootstrapNavbar, Nav, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function NavigationBar() {
   return (
-    <BootstrapNavbar bg="light" expand="lg" className="border-bottom">
-      <Container>
-        <BootstrapNavbar.Brand href="#home" className="fw-bold">
-          Dont't Worry
+    <BootstrapNavbar bg="white" expand="lg" className="border-bottom">
+      <Container fluid>
+        <BootstrapNavbar.Brand
+          as={Link}
+          to="/"
+          className="fw-bold fs-2 text-uppercase"
+        >
+          Don't Worry
         </BootstrapNavbar.Brand>
         <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
-        <BootstrapNavbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <Nav.Link href="#home">Inicio</Nav.Link>
-            <Nav.Link href="#collection">Colección</Nav.Link>
-            <Nav.Link href="#about">Nosotros</Nav.Link>
-            <Nav.Link href="#contact">Contacto</Nav.Link>
+        <BootstrapNavbar.Collapse
+          id="basic-navbar-nav"
+          className="justify-content-end"
+        >
+          <Nav>
+            <Nav.Link as={Link} to="/" className="text-dark">
+              INICIO
+            </Nav.Link>
+            <Nav.Link as={Link} to="/products" className="text-dark ">
+              PRODUCTOS
+            </Nav.Link>
+            <Nav.Link as={Link} to="/about" className="text-dark">
+              SOBRE NOSOTROS
+            </Nav.Link>
+            <Nav.Link as={Link} to="/contact" className="text-dark">
+              CONTACTO
+            </Nav.Link>
           </Nav>
         </BootstrapNavbar.Collapse>
       </Container>

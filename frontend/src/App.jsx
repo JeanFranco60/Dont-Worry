@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Products from './pages/Products';
 import NotFound from './pages/NotFound';
+import "./App.css";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 

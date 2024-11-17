@@ -48,7 +48,7 @@ export default function HomePage() {
               </Col>
               <Col md={6}>
                 <h2 className="mb-4">Nuestra Historia</h2>
-                <p className="lead">En NEXUS, creemos que los accesorios son más que simples complementos. Son una extensión de tu personalidad y estilo.</p>
+                <p className="lead">En Dont't Worry, creemos que los accesorios son más que simples complementos. Son una extensión de tu personalidad y estilo.</p>
                 <p>Fundada en 2024, nuestra marca se dedica a crear collares únicos que combinan diseño moderno con artesanía tradicional. Cada pieza está diseñada para el hombre que aprecia la calidad y la distinción.</p>
                 <Button variant="dark">Conoce Más</Button>
               </Col>
