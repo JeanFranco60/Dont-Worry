@@ -11,7 +11,7 @@ export default function HomePage() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <Navbar />
-      <WhatsAppButton/>
+      <WhatsAppButton />
 
       <main>
         <section className="py-5 text-center bg-dark text-white">

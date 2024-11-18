@@ -1,17 +1,16 @@
-const express = require("express");
-const sequelize = require("./config/db");
-const productRoutes = require("../routes/productRoutes");
 require("dotenv").config();
-
+const express = require("express");
 const app = express();
+const routes = require("../routes");
+const jwtErrorHandler = require("./utils/jwtErrorHandler");
+const cors = require("cors");
+
+app.use(cors());
 app.use(express.json());
-app.use("/api/products", productRoutes);
 
-sequelize.sync().then(() => {
-  console.log("Base de datos sincronizada.");
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () =>
-  console.log(`Servidor corriendo en http://localhost:${PORT}`)
+app.use(routes);
+app.use(jwtErrorHandler);
+app.listen(process.env.APP_PORT, () =>
+  console.log(`Servidor corriendo en http://${process.env.APP_PORT}.\n`)
 );
+module.exports = app;

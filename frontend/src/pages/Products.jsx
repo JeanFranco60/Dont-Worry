@@ -11,6 +11,7 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../components/NavigationBar";
 import Footer from "../components/Footer";
+import WhatsAppButton from "../components/WhatsAppButton";
 
 const productsData = [
   {
@@ -117,9 +118,9 @@ export default function FOO() {
   return (
     <div
       className="d-flex flex-column min-vh-100"
-      style={{ fontFamily: "Arial, sans-serif" }}
     >
       <Navbar />
+      <WhatsAppButton />
 
       <main className="flex-grow-1 py-5">
         <Container fluid>

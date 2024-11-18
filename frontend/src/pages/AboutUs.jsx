@@ -3,11 +3,14 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../components/NavigationBar";
 import Footer from "../components/Footer";
+import WhatsAppButton from "../components/WhatsAppButton";
 
 export default function SobreNosotros() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <Navbar />
+      <WhatsAppButton />
+
       <main className="flex-grow-1">
         <section className="py-5 bg-light">
           <Container>
@@ -15,8 +18,8 @@ export default function SobreNosotros() {
               <Col lg={6} className="mb-4 mb-lg-0">
                 <h1 className="display-4 fw-bold mb-3">Sobre Nosotros</h1>
                 <p className="lead mb-4">
-                  Descubre la historia detrás de DON'T WORRY, tu destino para collares
-                  masculinos de alta calidad y diseño único.
+                  Descubre la historia detrás de DON'T WORRY, tu destino para
+                  collares masculinos de alta calidad y diseño único.
                 </p>
               </Col>
               <Col lg={6}>
