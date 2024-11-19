@@ -8,27 +8,35 @@ import WhatsAppButton from "../components/WhatsAppButton";
 export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/api/products`
-        ); // Usando la variable de entorno
+          `${import.meta.env.VITE_API_URL}/products`
+        );
         if (!response.ok) {
           throw new Error("Error al obtener los productos");
         }
         const data = await response.json();
-        setProducts(data);
+        setProducts(data.products || []); // Asegúrate de acceder a los productos correctamente
       } catch (error) {
-        console.error("Error fetching products:", error);
+        setError(error.message); // Mensaje de error
       } finally {
-        setLoading(false);
+        setLoading(false); // Cambia el estado de loading
       }
     };
 
     fetchProducts();
   }, []);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="d-flex flex-column min-vh-100">
@@ -52,6 +60,7 @@ export default function HomePage() {
           </Container>
         </section>
 
+        {/* DESTACADOS */}
         <section className="py-5" id="featured">
           <Container>
             <h2 className="text-center mb-5">Destacados</h2>
@@ -63,7 +72,9 @@ export default function HomePage() {
                       <Card className="h-100 border-0 shadow-sm">
                         <Card.Img
                           variant="top"
-                          src={product.image || "/placeholder.svg?text=Collar"}
+                          src={`${import.meta.env.VITE_IMG_PATH}${
+                            product.pic
+                          }`}
                         />
                         <Card.Body>
                           <Card.Title>{product.name}</Card.Title>
