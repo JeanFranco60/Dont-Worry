@@ -1,13 +1,35 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-
 import { Link } from "react-router-dom";
 import Navbar from "../components/NavigationBar";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
 
 export default function HomePage() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/api/products`
+        ); // Usando la variable de entorno
+        if (!response.ok) {
+          throw new Error("Error al obtener los productos");
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <div className="d-flex flex-column min-vh-100">
       <Navbar />
@@ -34,23 +56,27 @@ export default function HomePage() {
           <Container>
             <h2 className="text-center mb-5">Destacados</h2>
             <Row>
-              {[1, 2, 3, 4].map((item) => (
-                <Col key={item} md={6} lg={3} className="mb-4">
-                  <Card className="h-100 border-0 shadow-sm">
-                    <Card.Img
-                      variant="top"
-                      src={`/placeholder.svg?text=Collar+${item}`}
-                    />
-                    <Card.Body>
-                      <Card.Title>Collar Moderno {item}</Card.Title>
-                      <Card.Text className="text-muted">$99.99</Card.Text>
-                      <Button variant="outline-dark" className="w-100">
-                        Ver Detalles
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
+              {loading
+                ? "Cargando..."
+                : products.map((product) => (
+                    <Col key={product.id} md={6} lg={3} className="mb-4">
+                      <Card className="h-100 border-0 shadow-sm">
+                        <Card.Img
+                          variant="top"
+                          src={product.image || "/placeholder.svg?text=Collar"}
+                        />
+                        <Card.Body>
+                          <Card.Title>{product.name}</Card.Title>
+                          <Card.Text className="text-muted">
+                            ${product.price}
+                          </Card.Text>
+                          <Button variant="outline-dark" className="w-100">
+                            Ver Detalles
+                          </Button>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  ))}
             </Row>
           </Container>
         </section>
