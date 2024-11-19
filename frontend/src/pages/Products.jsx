@@ -114,7 +114,7 @@ export default function FOO() {
             </Col>
           </Row>
 
-          {/* Mostrar un indicador de carga mientras se cargan los productos */}
+          
           {loading ? (
             <div className="d-flex justify-content-center py-5">
               <Spinner animation="border" variant="primary" />
