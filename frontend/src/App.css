@@ -1,3 +1,4 @@
+/* .whatsapp-button */
 .whatsapp-button {
   position: fixed;
   bottom: 20px;
@@ -23,4 +24,32 @@
 .whatsapp-button svg {
   width: 32px;
   height: 32px;
+}
+
+/* Nuestra Historia */
+.aboutUs-col {
+  background-color: black;
+}
+
+.aboutUs-img {
+  width: 100%;
+  height: auto;
+  max-height: 450px;
+  object-fit: cover;
+}
+
+.aboutUs-text {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (min-width: 1024px) {
+  /* En pantallas más grandes (laptops) */
+  .aboutUs-col {
+    padding-right: 300px;
+  }
+
+  .aboutUs-text {
+    padding-left: 50px;
+  }
 }

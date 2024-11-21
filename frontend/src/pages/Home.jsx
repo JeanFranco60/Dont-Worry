@@ -20,11 +20,11 @@ export default function HomePage() {
           throw new Error("Error al obtener los productos");
         }
         const data = await response.json();
-        setProducts(data.products || []); // Asegúrate de acceder a los productos correctamente
+        setProducts(data.products || []);
       } catch (error) {
-        setError(error.message); // Mensaje de error
+        setError(error.message);
       } finally {
-        setLoading(false); // Cambia el estado de loading
+        setLoading(false);
       }
     };
 
@@ -44,7 +44,7 @@ export default function HomePage() {
       <WhatsAppButton />
 
       <main>
-        <section className="py-5 text-center bg-dark text-white">
+        <section className="py-5 text-center bg-black text-white">
           <Container>
             <h1 className="display-4 fw-bold mb-3">Eleva tu Estilo</h1>
             <p className="lead mb-4">
@@ -53,7 +53,7 @@ export default function HomePage() {
             </p>
             <Link
               to="/products"
-              className="btn btn-lg btn-outline-light bg-black text-white border-dark"
+              className="btn btn-lg btn-outline-light bg-dark text-white border-dark"
             >
               Ver Colección
             </Link>
@@ -68,13 +68,11 @@ export default function HomePage() {
               {loading
                 ? "Cargando..."
                 : products.map((product) => (
-                    <Col key={product.id} md={6} lg={3} className="mb-4">
+                    <Col key={product.id} md={6} lg={4} className="mb-4">
                       <Card className="h-100 border-0 shadow-sm">
                         <Card.Img
                           variant="top"
-                          src={`${import.meta.env.VITE_IMG_PATH}${
-                            product.pic
-                          }`}
+                          src={`${import.meta.env.VITE_IMG_PATH}${product.pic}`}
                         />
                         <Card.Body>
                           <Card.Title>{product.name}</Card.Title>
@@ -92,17 +90,18 @@ export default function HomePage() {
           </Container>
         </section>
 
+        {/* Nuestra Historia */}
         <section className="py-5 bg-light" id="about">
           <Container>
             <Row className="align-items-center">
-              <Col md={6} className="mb-4 mb-md-0">
+              <Col md={6} className="mb-4 mb-md-0 aboutUs-col">
                 <img
-                  src="/placeholder.svg?text=About+Us"
+                  src="/img/efimero.jpg"
                   alt="About Us"
-                  className="img-fluid rounded"
+                  className="aboutUs-img"
                 />
               </Col>
-              <Col md={6}>
+              <Col md={6} className="aboutUs-text">
                 <h2 className="mb-4">Nuestra Historia</h2>
                 <p className="lead">
                   En Dont't Worry, creemos que los accesorios son más que
@@ -115,7 +114,13 @@ export default function HomePage() {
                   Cada pieza está diseñada para el hombre que aprecia la calidad
                   y la distinción.
                 </p>
-                <Button variant="dark">Conoce Más</Button>
+
+                <Link
+                  to="/about"
+                  className="btn btn-outline-light bg-dark text-white border-dark"
+                >
+                  Ver Más
+                </Link>
               </Col>
             </Row>
           </Container>

@@ -39,6 +39,7 @@ function Footer() {
               </li>
             </ul>
           </Col>
+          <h5 className="text-uppercase fw-bold mb-3">Contacto</h5>
           <Col md={3} className="mb-3 mb-md-0">
             <p className="small mb-0">Email: info@dontworry.com</p>
             <p className="small">Teléfono: (+598) 99-789-800</p>
@@ -66,7 +67,7 @@ function Footer() {
             className="text-decoration-none"
             style={{ color: "inherit" }}
           >
-            Don't Worry
+            Don't U Worry
           </Link>
           . Todos los derechos reservados.
         </p>

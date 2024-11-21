@@ -7,7 +7,7 @@ import {
   Button,
   Form,
   Offcanvas,
-  Spinner, // Agregado para el indicador de carga
+  Spinner,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../components/NavigationBar";
@@ -22,22 +22,21 @@ export default function FOO() {
   });
   const [sortBy, setSortBy] = useState("");
   const [showFilters, setShowFilters] = useState(false);
-  const [products, setProducts] = useState([]); // Estado para almacenar los productos
-  const [loading, setLoading] = useState(true); // Estado de carga
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Hacer fetch a la API para obtener los productos
   useEffect(() => {
-    fetch("http://localhost:3000/products") // Asegúrate de que esta URL es la correcta
+    fetch("http://localhost:3000/products")
       .then((response) => response.json())
       .then((data) => {
         if (Array.isArray(data.products)) {
-          setProducts(data.products); // Asegúrate de que data es un arreglo
+          setProducts(data.products);
         } else {
-          console.error("La respuesta no es un arreglo:", data);
+          console.error("La respuesta no contiene productos:", data);
         }
       })
-      .catch((error) => console.error("Error fetching products:", error))
-      .finally(() => setLoading(false)); // Setea loading a false después de que los datos se hayan cargado
+      .catch((error) => console.error("Error al obtener productos:", error))
+      .finally(() => setLoading(false));
   }, []);
 
   const handleFilterChange = (event) => {
@@ -52,31 +51,44 @@ export default function FOO() {
     setSortBy(event.target.value);
   };
 
-  const filteredProducts = Array.isArray(products)
-    ? products
-        .filter((product) => {
-          return (
-            (filters.category === "" ||
-              product.category === filters.category) &&
-            (filters.material === "" ||
-              product.material === filters.material) &&
-            (filters.priceRange === "" ||
-              (filters.priceRange === "under50" && product.price < 50) ||
-              (filters.priceRange === "50to100" &&
-                product.price >= 50 &&
-                product.price <= 100) ||
-              (filters.priceRange === "over100" && product.price > 100))
-          );
-        })
-        .sort((a, b) => {
-          if (sortBy === "priceLowToHigh") {
-            return a.price - b.price;
-          } else if (sortBy === "priceHighToLow") {
-            return b.price - a.price;
-          }
-          return 0;
-        })
-    : []; // Si `products` no es un arreglo, devolvemos un arreglo vacío
+  const filteredProducts = products
+    .filter((product) => {
+      // Filtro por categoría
+      if (
+        filters.category &&
+        product.category?.toLowerCase() !== filters.category.toLowerCase()
+      ) {
+        return false;
+      }
+
+      // Filtro por material
+      if (
+        filters.material &&
+        product.material?.toLowerCase() !== filters.material.toLowerCase()
+      ) {
+        return false;
+      }
+
+      // Filtro por rango de precio
+      if (filters.priceRange) {
+        const price = parseFloat(product.price);
+        if (
+          (filters.priceRange === "under50" && price >= 50) ||
+          (filters.priceRange === "50to100" && (price < 50 || price > 100)) ||
+          (filters.priceRange === "over100" && price <= 100)
+        ) {
+          return false;
+        }
+      }
+
+      return true; // Pasó todos los filtros
+    })
+    .sort((a, b) => {
+      // Ordenar productos según la selección
+      if (sortBy === "priceLowToHigh") return a.price - b.price;
+      if (sortBy === "priceHighToLow") return b.price - a.price;
+      return 0;
+    });
 
   return (
     <div className="d-flex flex-column min-vh-100">
@@ -114,7 +126,6 @@ export default function FOO() {
             </Col>
           </Row>
 
-          
           {loading ? (
             <div className="d-flex justify-content-center py-5">
               <Spinner animation="border" variant="primary" />
@@ -145,6 +156,7 @@ export default function FOO() {
         </Container>
       </main>
 
+      {/* Offcanvas para los filtros */}
       <Offcanvas
         show={showFilters}
         onHide={() => setShowFilters(false)}
@@ -154,7 +166,61 @@ export default function FOO() {
           <Offcanvas.Title className="text-uppercase">Filtros</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Form>{/* Filtros del formulario */}</Form>
+          <Form>
+            <Form.Group className="mb-4">
+              <Form.Label className="text-uppercase fw-bold">
+                Categoría
+              </Form.Label>
+              <Form.Select
+                name="category"
+                onChange={handleFilterChange}
+                value={filters.category}
+                className="border-0 border-bottom rounded-0"
+              >
+                <option value="">Todas</option>
+                <option value="cuero">Cuero</option>
+                <option value="metal">Metal</option>
+                <option value="piedra">Piedra</option>
+                <option value="madera">Madera</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-4">
+              <Form.Label className="text-uppercase fw-bold">
+                Material
+              </Form.Label>
+              <Form.Select
+                name="material"
+                onChange={handleFilterChange}
+                value={filters.material}
+                className="border-0 border-bottom rounded-0"
+              >
+                <option value="">Todos</option>
+                <option value="cuero">Cuero</option>
+                <option value="plata">Plata</option>
+                <option value="oro">Oro</option>
+                <option value="acero">Acero</option>
+                <option value="ónix">Ónix</option>
+                <option value="madera">Madera</option>
+                <option value="perla">Perla</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-4">
+              <Form.Label className="text-uppercase fw-bold">
+                Rango de Precio
+              </Form.Label>
+              <Form.Select
+                name="priceRange"
+                onChange={handleFilterChange}
+                value={filters.priceRange}
+                className="border-0 border-bottom rounded-0"
+              >
+                <option value="">Todos</option>
+                <option value="under50">Menos de $50</option>
+                <option value="50to100">$50 - $100</option>
+                <option value="over100">Más de $100</option>
+              </Form.Select>
+            </Form.Group>
+          </Form>
         </Offcanvas.Body>
       </Offcanvas>
 

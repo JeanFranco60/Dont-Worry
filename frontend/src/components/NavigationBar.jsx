@@ -11,7 +11,7 @@ function NavigationBar() {
           to="/"
           className="fw-bold fs-2 text-uppercase"
         >
-          Don't Worry
+          Don't U Worry
         </BootstrapNavbar.Brand>
         <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
         <BootstrapNavbar.Collapse
