@@ -26,7 +26,7 @@ export default function FOO() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch(`${import.meta.env.VITE_API_URL}/products`)
       .then((response) => response.json())
       .then((data) => {
         if (Array.isArray(data.products)) {

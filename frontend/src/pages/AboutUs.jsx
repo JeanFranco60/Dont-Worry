@@ -5,45 +5,53 @@ import Navbar from "../components/NavigationBar";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
 
-export default function SobreNosotros() {
+import { FaFingerprint } from "react-icons/fa";
+import { FaDove } from "react-icons/fa";
+import { FaHatCowboy } from "react-icons/fa";
+
+export default function AboutUs() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <Navbar />
       <WhatsAppButton />
 
-      <main className="flex-grow-1">
-        <section className="py-5 bg-light">
+      <main className="flex-grow-1 ">
+        {/* ¿Quiénes somos?*/}
+        <section className="py-5 bg-light ">
           <Container>
-            <Row className="align-items-center">
-              <Col lg={6} className="mb-4 mb-lg-0">
-                <h1 className="display-4 fw-bold mb-3">Sobre Nosotros</h1>
+            <Row className="justify-content-center">
+              <Col lg={8} className="mb-4 mb-lg-0">
+                <h1 className="display-4 text-center  fw-bold mb-3">
+                  ¿Quiénes somos?
+                </h1>
                 <p className="lead mb-4">
-                  Descubre la historia detrás de DON'T WORRY, tu destino para
-                  collares masculinos de alta calidad y diseño único.
+                  DON'T U WORRY, somos una comunidad que celebra la libertad de
+                  vivir sin preocupaciones. Desde acá valoramos la autenticidad
+                  y disfrutamos cada momento sin preocuparnos por lo que tenga
+                  que decir el mundo
                 </p>
               </Col>
-              <Col lg={6}>
+              {/* <Col lg={6}>
                 <img
-                  src="/placeholder.svg"
-                  alt="Equipo NEXUS"
+                  src="/img/.jpg"
+                  alt="Equipo Don't u worry"
                   className="img-fluid rounded"
                 />
-              </Col>
+              </Col> */}
             </Row>
           </Container>
         </section>
 
         <section className="py-5">
           <Container>
-            <h2 className="text-center mb-5">Nuestra Historia</h2>
+            <h2 className="text-center mb-5">¿Por qué?</h2>
             <Row>
               <Col lg={8} className="mx-auto">
                 <p>
-                  Fundada en 2020, NEXUS nació de la pasión por la joyería
-                  masculina y el deseo de ofrecer piezas únicas que reflejen la
-                  personalidad y el estilo de cada hombre. Nuestro viaje comenzó
-                  en un pequeño taller en el corazón de la ciudad, donde cada
-                  collar era cuidadosamente elaborado a mano.
+                  Necesitamos más personas que se animen a ser ellas mismas.
+                  Don't U Worry es un estilo de vida. Nuestra misión es
+                  ofrecerles piezas que simbolicen esa libertad, creando un
+                  movimiento que celebre vivir sin preocupaciones
                 </p>
                 <p>
                   Con el tiempo, nuestra dedicación a la calidad y el diseño
@@ -94,36 +102,28 @@ export default function SobreNosotros() {
             <Row>
               {[
                 {
-                  title: "Calidad",
+                  title: "autenticidad",
                   description:
-                    "Utilizamos solo los mejores materiales y técnicas artesanales.",
+                    "Valoramos la libertad de ser uno mismo y celebramos la autenticidad de cada persona, sin importar lo que el mundo piense.",
+                  icon: <FaFingerprint />,
                 },
                 {
-                  title: "Innovación",
+                  title: "Libertad",
                   description:
-                    "Constantemente buscamos nuevas formas de expresión en nuestros diseños.",
+                    "Creemos en la importancia de vivir sin preocupaciones, disfrutando de la vida sin las ataduras de las expectativas ajenas.",
+                  icon: <FaDove />,
                 },
                 {
-                  title: "Sostenibilidad",
+                  title: "Estilo personal",
                   description:
-                    "Nos comprometemos con prácticas responsables y materiales éticos.",
+                    "Fomentamos que cada individuo exprese su personalidad a través de lo que lleva, con piezas que simbolizan su verdadera esencia..",
+                  icon: <FaHatCowboy />,
                 },
               ].map((value, index) => (
                 <Col key={index} md={4} className="mb-4">
                   <Card className="h-100 border-0 shadow-sm">
                     <Card.Body className="text-center">
-                      <div className="mb-3">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="48"
-                          height="48"
-                          fill="currentColor"
-                          className="bi bi-star"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-                        </svg>
-                      </div>
+                      <div className="mb-3 fs-3">{value.icon}</div>
                       <Card.Title>{value.title}</Card.Title>
                       <Card.Text>{value.description}</Card.Text>
                     </Card.Body>

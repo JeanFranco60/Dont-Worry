@@ -17,7 +17,7 @@ export default function HomePage() {
           `${import.meta.env.VITE_API_URL}/products`
         );
         if (!response.ok) {
-          throw new Error("Error al obtener los productos");
+          throw new Error("Errorr al obtener los productos");
         }
         const data = await response.json();
         setProducts(data.products || []);
@@ -46,7 +46,7 @@ export default function HomePage() {
       <main>
         <section className="py-5 text-center bg-black text-white">
           <Container>
-            <h1 className="display-4 fw-bold mb-3">Eleva tu Estilo</h1>
+            <h1 className="display-4 fw-bold mb-3">Elevá tu Estilo</h1>
             <p className="lead mb-4">
               Descubre nuestra colección exclusiva de collares para el hombre
               moderno
