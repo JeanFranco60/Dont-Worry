@@ -50,7 +50,7 @@ export default function HomePage() {
               <span>- Envío Gratis -</span>
               <span>- Envío Gratis -</span>
               <span>- Envío Gratis -</span>
-              <span>- Envío Gratis -</span>
+              <span>- Prueba deployment -</span>
               <span>- Envío Gratis -</span>
               <span>- Envío Gratis -</span>
               <span>- Envío Gratis -</span>
