@@ -1,4 +1,4 @@
-/* .whatsapp-button */
+/*--------------------- .whatsapp-button ------------------ */
 .whatsapp-button {
   position: fixed;
   bottom: 20px;
@@ -26,7 +26,48 @@
   height: 32px;
 }
 
-/* Nuestra Historia */
+/* ------------------destacados ---------------*/
+
+.medium-card {
+  max-width: 30rem; /* Ajusta el tamaño máximo de las tarjetas */
+  font-size: 1rem; /* Tamaño ligeramente más pequeño de la fuente */
+}
+
+.medium-card img {
+  height: 350px; /* Ajusta la altura de la imagen */
+  object-fit: cover; /* Mantén la proporción de la imagen */
+}
+
+/* carrousel */
+
+.free-shipping-carousel {
+  position: fixed; /* Fija el carrusel en la parte superior */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px; /* Altura fija */
+  overflow: hidden; /* Oculta contenido fuera del área visible */
+  background-color: yellow;
+  display: flex;
+  align-items: center; /* Centra verticalmente los textos */
+  z-index: 9999; /* Prioridad en la pantalla */
+}
+
+.text-wrapper {
+  display: flex;
+  animation: infinite-scroll 20s linear infinite; /* Animación infinita */
+}
+
+.text-wrapper span {
+  display: inline-block;
+  margin: 0 2rem; /* Espaciado entre textos */
+  font-size: 1.2rem; /* Tamaño del texto */
+  font-weight: bold;
+  color: black;
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+/* -----------------Nuestra Historia -------------------*/
 .aboutUs-col {
   background-color: black;
 }

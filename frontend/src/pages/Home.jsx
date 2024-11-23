@@ -40,13 +40,28 @@ export default function HomePage() {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      <Navbar />
       <WhatsAppButton />
 
       <main>
-        <section className="py-5 text-center bg-black text-white">
+        <section className="py-5 text-center bg-black text-white position-relative">
+          <div className="free-shipping-carousel">
+            <div className="text-wrapper">
+              <span>- Envío Gratis -</span>
+              <span>- Envío Gratis -</span>
+              <span>- Envío Gratis -</span>
+              <span>- Envío Gratis -</span>
+              <span>- Envío Gratis -</span>
+              <span>- Envío Gratis -</span>
+              <span>- Envío Gratis -</span>
+              <span>- Envío Gratis -</span>
+              <span>- Envío Gratis -</span>
+              <span>- Envío Gratis -</span>
+            </div>
+          </div>
+
+          <Navbar />
           <Container>
-            <h1 className="display-4 fw-bold mb-3">Elevá tu Estilo</h1>
+            <h1 className="display-4 fw-bold mb-3 mt-5">Elevá tu Estilo</h1>
             <p className="lead mb-4">
               Descubre nuestra colección exclusiva de collares para el hombre
               moderno
@@ -69,7 +84,7 @@ export default function HomePage() {
                 ? "Cargando..."
                 : products.map((product) => (
                     <Col key={product.id} md={6} lg={4} className="mb-4">
-                      <Card className="h-100 border-0 shadow-sm">
+                      <Card className="h-100 border-0 shadow-sm medium-card">
                         <Card.Img
                           variant="top"
                           src={`${import.meta.env.VITE_IMG_PATH}${product.pic}`}
@@ -126,6 +141,7 @@ export default function HomePage() {
           </Container>
         </section>
 
+        {/* Nuestra Colección */}
         <section className="py-5" id="collection">
           <Container>
             <h2 className="text-center mb-5">Nuestra Colección</h2>
@@ -170,7 +186,8 @@ export default function HomePage() {
           </Container>
         </section>
 
-        <section className="py-5 bg-dark text-white" id="newsletter">
+        {/* Lista VIP */}
+        <section className="py-5 bg-black text-white" id="newsletter">
           <Container className="text-center">
             <h2 className="mb-4">Únete a Nuestra Lista VIP</h2>
             <p className="lead mb-4">
