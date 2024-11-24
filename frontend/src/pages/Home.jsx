@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Navbar from "../components/NavigationBar";
 import Footer from "../components/Footer";
@@ -31,7 +31,11 @@ export default function HomePage() {
     fetchProducts();
   }, []);
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="vh-100 vw-100 d-flex align-items-center justify-content-center">
+        <Spinner animation="border" role="status" />
+      </div>
+    );
   }
 
   if (error) {

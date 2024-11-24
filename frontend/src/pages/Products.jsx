@@ -128,7 +128,7 @@ export default function FOO() {
 
           {loading ? (
             <div className="d-flex justify-content-center py-5">
-              <Spinner animation="border" variant="primary" />
+              <Spinner/>
             </div>
           ) : (
             <Row>
