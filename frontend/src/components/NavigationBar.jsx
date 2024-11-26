@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 function NavigationBar() {
   return (
-    <BootstrapNavbar bg="white" expand="lg" className="border-bottom">
+    <BootstrapNavbar bg="black" expand="lg" className=" text-center pt-4 ">
       <Container>
         <BootstrapNavbar.Brand
           as={Link}
           to="/"
-          className="fw-bold fs-2 text-uppercase"
+          className="fw-bold fs-2 text-uppercase text-white"
         >
           Don't U Worry
         </BootstrapNavbar.Brand>
@@ -19,13 +19,13 @@ function NavigationBar() {
           className="justify-content-end"
         >
           <Nav>
-            <Nav.Link as={Link} to="/" className="text-dark">
+            <Nav.Link as={Link} to="/" className="text-white">
               INICIO
             </Nav.Link>
-            <Nav.Link as={Link} to="/products" className="text-dark ">
+            <Nav.Link as={Link} to="/products" className="text-white ">
               PRODUCTOS
             </Nav.Link>
-            <Nav.Link as={Link} to="/about" className="text-dark">
+            <Nav.Link as={Link} to="/about" className="text-white">
               SOBRE NOSOTROS
             </Nav.Link>
           </Nav>

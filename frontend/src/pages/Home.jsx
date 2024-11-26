@@ -46,33 +46,18 @@ export default function HomePage() {
     <div className="d-flex flex-column min-vh-100">
       <WhatsAppButton />
 
+      <Navbar />
       <main>
         <section className="py-5 text-center bg-black text-white position-relative">
-          <div className="free-shipping-carousel">
-            <div className="text-wrapper">
-              <span>- Envío Gratis -</span>
-              <span>- Envío Gratis -</span>
-              <span>- Envío Gratis -</span>
-              <span>- Envío Gratis -</span>
-              <span>- Prueba deployment -</span>
-              <span>- Envío Gratis -</span>
-              <span>- Envío Gratis -</span>
-              <span>- Envío Gratis -</span>
-              <span>- Envío Gratis -</span>
-              <span>- Envío Gratis -</span>
-            </div>
-          </div>
-
-          <Navbar />
           <Container>
-            <h1 className="display-4 fw-bold mb-3 mt-5">Elevá tu Estilo</h1>
+            <h1 className="display-4 fw-bold mb-3 ">Elevá tu Estilo</h1>
             <p className="lead mb-4">
               Descubre nuestra colección exclusiva de collares para el hombre
               moderno
             </p>
             <Link
               to="/products"
-              className="btn btn-lg btn-outline-light bg-dark text-white border-dark"
+              className="btn btn-sm btn-outline-light bg-dark text-white border-dark"
             >
               Ver Colección
             </Link>
