@@ -4,12 +4,16 @@ import { Link } from "react-router-dom";
 
 function NavigationBar() {
   return (
-    <BootstrapNavbar bg="black" expand="lg" className=" text-center pt-4 ">
+    <BootstrapNavbar
+      bg="black"
+      expand="lg"
+      className=" text-center pt-4 border-bottom "
+    >
       <Container>
         <BootstrapNavbar.Brand
           as={Link}
           to="/"
-          className="fw-bold fs-2 text-uppercase text-white"
+          className="fw-bold fs-2 text-uppercase text-white "
         >
           Don't U Worry
         </BootstrapNavbar.Brand>

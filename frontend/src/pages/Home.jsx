@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Navbar from "../components/NavigationBar";
 import Footer from "../components/Footer";
+import FeaturedCarousel from "../components/FeaturedCarousel";
 import WhatsAppButton from "../components/WhatsAppButton";
 
 export default function HomePage() {
@@ -46,53 +47,28 @@ export default function HomePage() {
     <div className="d-flex flex-column min-vh-100">
       <WhatsAppButton />
 
-      <Navbar />
       <main>
-        <section className="py-5 text-center bg-black text-white position-relative">
+        <section className="text-center bg-black text-white position-relative">
           <Container>
-            <h1 className="display-4 fw-bold mb-3 ">Elevá tu Estilo</h1>
-            <p className="lead mb-4">
-              Descubre nuestra colección exclusiva de collares para el hombre
-              moderno
-            </p>
-            <Link
-              to="/products"
-              className="btn btn-sm btn-outline-light bg-dark text-white border-dark"
-            >
-              Ver Colección
-            </Link>
+            <Navbar />
+            <div className="py-5">
+              <h1 className="display-4 fw-bold mb-3 ">Elevá tu Estilo</h1>
+              <p className="lead mb-4">
+                Descubre nuestra colección exclusiva de collares para el hombre
+                moderno
+              </p>
+              <Link
+                to="/products"
+                className="btn btn-sm btn-outline-light bg-dark text-white border-dark"
+              >
+                Ver Colección
+              </Link>
+            </div>
           </Container>
         </section>
 
         {/* DESTACADOS */}
-        <section className="py-5" id="featured">
-          <Container>
-            <h2 className="text-center mb-5">Destacados</h2>
-            <Row>
-              {loading
-                ? "Cargando..."
-                : products.map((product) => (
-                    <Col key={product.id} md={6} lg={4} className="mb-4">
-                      <Card className="h-100 border-0 shadow-sm medium-card">
-                        <Card.Img
-                          variant="top"
-                          src={`${import.meta.env.VITE_IMG_PATH}${product.pic}`}
-                        />
-                        <Card.Body>
-                          <Card.Title>{product.name}</Card.Title>
-                          <Card.Text className="text-muted">
-                            ${product.price}
-                          </Card.Text>
-                          <Button variant="outline-dark" className="w-100">
-                            Ver Detalles
-                          </Button>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                  ))}
-            </Row>
-          </Container>
-        </section>
+        <FeaturedCarousel products={products} loading={loading} />
 
         {/* Nuestra Historia */}
         <section className="py-5 bg-light" id="about">
