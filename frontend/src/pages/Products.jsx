@@ -96,7 +96,7 @@ export default function FOO() {
       <WhatsAppButton />
 
       <main className="flex-grow-1 py-5">
-        <Container fluid>
+        <Container>
           <Row className="mb-4">
             <Col>
               <h1 className="text-center text-uppercase fw-light">
@@ -128,7 +128,7 @@ export default function FOO() {
 
           {loading ? (
             <div className="d-flex justify-content-center py-5">
-              <Spinner/>
+              <Spinner />
             </div>
           ) : (
             <Row>

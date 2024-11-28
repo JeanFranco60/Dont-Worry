@@ -8,10 +8,11 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
+
 function FeaturedCarousel({ products, loading }) {
   return (
     <section className="py-5" id="featured">
-      <div className="container mx-auto">
+      <div className="container mx-auto relative overflow-hidden px-4">
         <h2 className="text-center mb-5 text-2xl font-bold">Destacados</h2>
 
         {loading ? (
@@ -19,24 +20,24 @@ function FeaturedCarousel({ products, loading }) {
         ) : (
           <Carousel
             opts={{ align: "start" }}
-            className="w-full max-w-5xl mx-auto"
+            className="w-full max-w-5xl mx-auto relative"
           >
             <CarouselContent className="flex">
               {products.map((product) => (
                 <CarouselItem
                   key={product.id}
-                  className="md:basis-1/2 lg:basis-1/3 p-2"
+                  className="md:basis-1/2 lg:basis-1/3 bg-white"
                 >
-                  <Card className="h-full border rounded-lg shadow-lg">
+                  <Card className="h-full shadow-none border-none">
                     <img
                       src={`${import.meta.env.VITE_IMG_PATH}${product.pic}`}
                       alt={product.name}
-                      className="w-full h-48 object-cover rounded-t-lg"
+                      className="w-full h-64 object-cover"
                     />
-                    <CardContent className="p-4">
-                      <h3 className="text-lg font-bold">{product.name}</h3>
-                      <p className="text-sm text-gray-600">${product.price}</p>
-                      <Button variant="outline" className="w-full mt-4">
+                    <CardContent className="p-2">
+                      <h3 className="text-sm font-semibold">{product.name}</h3>
+                      <p className="text-xs text-gray-600">${product.price}</p>
+                      <Button variant="outline" className="w-full mt-2 text-xs">
                         Ver Detalles
                       </Button>
                     </CardContent>
@@ -44,8 +45,9 @@ function FeaturedCarousel({ products, loading }) {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+
+            <CarouselPrevious className="absolute left-2  hidden md:block" />
+            <CarouselNext className="absolute right-2  hidden md:block" />
           </Carousel>
         )}
       </div>
