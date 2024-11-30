@@ -134,6 +134,7 @@ export default function FOO() {
             <Row>
               {filteredProducts.map((product) => (
                 <Col key={product.id} sm={6} md={4} lg={3} className="mb-4">
+
                   <Card className="border-0">
                     <Card.Img
                       variant="top"
@@ -149,6 +150,8 @@ export default function FOO() {
                       </Card.Text>
                     </Card.Body>
                   </Card>
+
+                  
                 </Col>
               ))}
             </Row>

@@ -65,7 +65,7 @@ export default function AboutUs() {
           </Container>
         </section>
 
-        <section className="py-5 bg-light">
+        {/* <section className="py-5 bg-light">
           <Container>
             <h2 className="text-center mb-5">Nuestro Equipo</h2>
             <Row>
@@ -94,7 +94,7 @@ export default function AboutUs() {
               ))}
             </Row>
           </Container>
-        </section>
+        </section> */}
 
         <section className="py-5">
           <Container>

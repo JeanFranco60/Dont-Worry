@@ -40,11 +40,11 @@ function ProductCard({ product, favorites, toggleFavorite }) {
         </div>
 
         {/* Información del producto (debajo de la imagen) */}
-        <div className="bg-transparent text-center border border-black">
+        <div className="bg-transparent ">
           <h3 className="text-black font-medium text-base md:text-sm lg:text-base truncate m-0">
             {product.name}
           </h3>
-          <span className="text-gray-600 text-xs md:text-sm">
+          <span className="text-black text-xs md:text-sm">
             {product.category}
             <p className="font-bold text-sm md:text-base m-0">
               UYU {product.price}

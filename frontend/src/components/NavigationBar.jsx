@@ -7,7 +7,7 @@ function NavigationBar() {
     <BootstrapNavbar
       bg="black"
       expand="lg"
-      className="text-center border-bottom"
+      className="text-center border-bottom sticky-top"
     >
       <Container>
         <BootstrapNavbar.Brand
@@ -20,27 +20,27 @@ function NavigationBar() {
         <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
         <BootstrapNavbar.Collapse
           id="basic-navbar-nav"
-          className="justify-content-end "
+          className="justify-content-end"
         >
           <Nav>
             <Nav.Link
               as={Link}
               to="/"
-              className="text-white  hover:underline transition duration-300 ease-in-out"
+              className="text-white hover:underline transition duration-300 ease-in-out"
             >
               INICIO
             </Nav.Link>
             <Nav.Link
               as={Link}
               to="/products"
-              className="text-white  hover:underline transition duration-300 ease-in-out"
+              className="text-white hover:underline transition duration-300 ease-in-out"
             >
               PRODUCTOS
             </Nav.Link>
             <Nav.Link
               as={Link}
               to="/about"
-              className="text-white  hover:underline transition duration-300 ease-in-out"
+              className="text-white hover:underline transition duration-300 ease-in-out"
             >
               SOBRE NOSOTROS
             </Nav.Link>

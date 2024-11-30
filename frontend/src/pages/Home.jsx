@@ -75,7 +75,7 @@ export default function HomePage() {
         {/* Nuestra Historia */}
         <section className="py-5 bg-light" id="about">
           <Container>
-            <Row className="align-items-center">
+            <Row className="align-items-center border-dashed border-2 border-black">
               <Col md={6} className="mb-4 mb-md-0 aboutUs-col">
                 <img
                   src="/img/efimero.jpg"
@@ -83,7 +83,7 @@ export default function HomePage() {
                   className="aboutUs-img"
                 />
               </Col>
-              <Col md={6} className="aboutUs-text">
+              <Col md={6} className="aboutUs-text ">
                 <h2 className="mb-4">Nuestra Historia</h2>
                 <p className="lead">
                   En Dont't Worry, creemos que los accesorios son más que
@@ -109,7 +109,7 @@ export default function HomePage() {
         </section>
 
         {/* Nuestra Colección */}
-        <section className="py-5" id="collection">
+        {/* <section className="py-5" id="collection">
           <Container>
             <h2 className="text-center mb-5">Nuestra Colección</h2>
             <Row>
@@ -151,7 +151,7 @@ export default function HomePage() {
               </Col>
             </Row>
           </Container>
-        </section>
+        </section> */}
 
         {/* Lista VIP */}
         <section className="py-5 bg-black text-white" id="newsletter">
