@@ -67,3 +67,11 @@
     padding-left: 50px;
   }
 }
+
+/* En tu archivo CSS */
+.custom-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999; /* Asegúrate de que el navbar quede por encima de otros elementos */
+  box-shadow: 0 4px 2px -2px gray; /* Agrega una sombra para hacer que el navbar se destaque */
+}

@@ -48,9 +48,9 @@ export default function HomePage() {
       <WhatsAppButton />
 
       <main>
+        <Navbar />
         <section className="text-center bg-black text-white position-relative">
           <Container>
-            <Navbar />
             <div className="py-5">
               <h1 className="display-4 fw-bold mb-3 ">Elevá tu Estilo</h1>
               <p className="lead mb-4">
@@ -69,8 +69,7 @@ export default function HomePage() {
 
         {/* DESTACADOS */}
         <div className="bg-black-400">
-
-        <FeaturedCarousel products={products} loading={loading} />
+          <FeaturedCarousel products={products} loading={loading} />
         </div>
 
         {/* Nuestra Historia */}
