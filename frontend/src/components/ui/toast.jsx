@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
 
-const Toast = ({ message }) => {
+const Toast = ({ productId, products, favorites }) => {
   const [visible, setVisible] = useState(false);
+  const product = products.find((p) => p.id === productId);
+  const action = favorites[productId] ? "añadido a" : "eliminado de";
 
   useEffect(() => {
-    if (message) {
+    if (productId) {
       setVisible(true);
-
-      const timer = setTimeout(() => {
-        setVisible(false);
-      }, 3000);
-
+      const timer = setTimeout(() => setVisible(false), 3000);
       return () => clearTimeout(timer);
     }
-  }, [message]);
+  }, [productId]);
 
-  if (!visible) return null;
+  if (!visible || !product) return null;
 
   return (
-    <div className="fixed top-5 right-5 bg-black text-white py-1 px-3 rounded-lg shadow-lg text-sm">
+    <div className="fixed top-5 right-5 bg-black text-white py-3 px-4 rounded-md shadow-lg text-sm">
       <div className="flex items-center justify-between">
-        <span>{message}</span>
+        <span>
+          El producto <strong>{product.name}</strong> fue {action} favoritos.
+        </span>
         <button
           onClick={() => setVisible(false)}
-          className="text-white font-bold ml-2 hover:text-gray-400"
+          className="text-white font-bold ml-3 hover:text-gray-400"
         >
           ×
         </button>

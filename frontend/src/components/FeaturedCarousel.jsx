@@ -1,41 +1,23 @@
 import * as React from "react";
 import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
-import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
-import { Heart, ShoppingCart } from "lucide-react";
+import { Heart, Plus } from "lucide-react";
 import Toast from "../components/ui/toast";
 
 function FeaturedCarousel({ products, loading }) {
   const [favorites, setFavorites] = React.useState({});
   const [toastMessage, setToastMessage] = React.useState("");
 
-  const toggleFavorite = (productId, productName) => {
+  const toggleFavorite = (productId) => {
     setFavorites((prev) => {
-      const newFavorites = {
-        ...prev,
-        [productId]: !prev[productId],
-      };
-
-      setToastMessage(
-        newFavorites[productId]
-          ? `El producto ${productName} fue añadido a favoritos.`
-          : `El producto ${productName} fue eliminado de favoritos.`
-      );
-
-      return newFavorites;
+      const updatedFavorites = { ...prev };
+      updatedFavorites[productId] = !updatedFavorites[productId];
+      setToastMessage(productId); // Trigger toast after changing favorite state
+      return updatedFavorites;
     });
   };
 
@@ -49,72 +31,68 @@ function FeaturedCarousel({ products, loading }) {
         ) : (
           <Carousel
             opts={{ align: "start" }}
-            className="w-full max-w-5xl mx-auto"
+            className="w-full max-w-4xl mx-auto"
           >
             <CarouselContent className="flex">
               {products.map((product) => (
-                <CarouselItem
-                  key={product.id}
-                  className="md:basis-1/2 lg:basis-1/3 bg-white"
-                >
-                  <Card className="flex flex-col overflow-hidden group shadow-none border-none">
-                    <CardHeader className="p-0">
-                      <div className="relative mb-2 overflow-hidden rounded-t-lg">
-                        <img
-                          src={`${import.meta.env.VITE_IMG_PATH}${product.pic}`}
-                          alt={product.name}
-                          className="object-cover w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-105"
-                        />
-                        <Button
-                          size="icon"
-                          variant="ghost"
-                          className="absolute top-4 right-4 hover:bg-white/90 bg-white/80"
-                          onClick={() =>
-                            toggleFavorite(product.id, product.name)
-                          }
-                        >
-                          <Heart
-                            className={`w-6 h-6 transition-all duration-300 ${
-                              favorites[product.id]
-                                ? "fill-black text-black"
-                                : "fill-none text-gray-400"
-                            }`}
-                          />
-                        </Button>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="p-3">
-                      <CardTitle>{product.name}</CardTitle>
-                      <CardDescription className="text-xs text-gray-600">
-                        {product.category}
-                      </CardDescription>
-                      <p className="text-xs text-gray-600 line-clamp-2 mt-2">
-                        {product.description}
-                      </p>
-                    </CardContent>
-                    <CardFooter className="p-3 pt-0 mt-auto flex justify-between items-center">
-                      <span className="text-lg font-bold">
-                        ${product.price}
-                      </span>
+                <CarouselItem key={product.id} className="p-2">
+                  <div className="relative bg-transparent border border-black flex flex-col">
+                    {/* Imagen del producto */}
+                    <div className="relative overflow-hidden flex-1">
+                      <img
+                        src={`${import.meta.env.VITE_IMG_PATH}${product.pic}`}
+                        alt={product.name}
+                        className="object-cover w-full h-full"
+                      />
+                      {/* Botón de favorito */}
                       <Button
-                        variant="outline"
-                        className="flex items-center gap-2 text-sm"
+                        size="icon"
+                        variant="ghost"
+                        className="absolute top-2 right-2 bg-white/80 hover:bg-white/90 h-6 w-6"
+                        onClick={() => toggleFavorite(product.id)}
                       >
-                        <ShoppingCart className="w-4 h-4" />
-                        Agregar
+                        <Heart
+                          className={`w-2 h-2 ${
+                            favorites[product.id]
+                              ? "fill-black text-black"
+                              : "fill-gray text-gray-400"
+                          }`}
+                        />
                       </Button>
-                    </CardFooter>
-                  </Card>
+                      {/* Botón "+" flotante */}
+                      <Button
+                        size="icon"
+                        className="absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-white rounded-full text-black w-6 h-6 text-xs hover:bg-gray-100 hover:scale-110 transition-all"
+                      >
+                        <Plus />
+                      </Button>
+                    </div>
+
+                    {/* Información del producto */}
+                    <div className="text-center border-t border-black p-2">
+                      <h3 className="text-black font-medium text-base truncate">
+                        {product.name}
+                      </h3>
+                      <span className="text-gray-600 text-xs">
+                        {product.category}
+                      </span>
+                      <p className="font-bold text-sm md:text-base py-0">
+                        UYU {product.price}
+                      </p>
+                    </div>
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden md:block" />
-            <CarouselNext className="hidden md:block" />
           </Carousel>
         )}
       </div>
 
-      <Toast message={toastMessage} />
+      <Toast
+        productId={toastMessage}
+        products={products}
+        favorites={favorites}
+      />
     </section>
   );
 }

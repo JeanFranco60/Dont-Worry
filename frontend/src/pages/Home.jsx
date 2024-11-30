@@ -68,7 +68,10 @@ export default function HomePage() {
         </section>
 
         {/* DESTACADOS */}
+        <div className="bg-black-400">
+
         <FeaturedCarousel products={products} loading={loading} />
+        </div>
 
         {/* Nuestra Historia */}
         <section className="py-5 bg-light" id="about">
