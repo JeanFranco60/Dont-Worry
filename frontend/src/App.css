@@ -26,17 +26,7 @@
   height: 32px;
 }
 
-/* ------------------destacados ---------------*/
 
-.medium-card {
-  max-width: 30rem; /* Ajusta el tamaño máximo de las tarjetas */
-  font-size: 1rem; /* Tamaño ligeramente más pequeño de la fuente */
-}
-
-.medium-card img {
-  height: 350px; /* Ajusta la altura de la imagen */
-  object-fit: cover; /* Mantén la proporción de la imagen */
-}
 
 /* carrousel */
 

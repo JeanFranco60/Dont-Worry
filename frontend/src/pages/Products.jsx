@@ -3,7 +3,6 @@ import {
   Container,
   Row,
   Col,
-  Card,
   Button,
   Form,
   Offcanvas,
@@ -13,8 +12,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../components/NavigationBar";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
+import ProductCard from "../components/ProductCard";
 
-export default function FOO() {
+export default function FeaturedCarousel() {
   const [filters, setFilters] = useState({
     category: "",
     material: "",
@@ -24,6 +24,7 @@ export default function FOO() {
   const [showFilters, setShowFilters] = useState(false);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [favorites, setFavorites] = useState({}); // Estado para los favoritos
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/products`)
@@ -39,6 +40,14 @@ export default function FOO() {
       .finally(() => setLoading(false));
   }, []);
 
+  // Función para alternar los favoritos
+  const toggleFavorite = (productId) => {
+    setFavorites((prev) => ({
+      ...prev,
+      [productId]: !prev[productId],
+    }));
+  };
+
   const handleFilterChange = (event) => {
     const { name, value } = event.target;
     setFilters((prevFilters) => ({
@@ -53,7 +62,6 @@ export default function FOO() {
 
   const filteredProducts = products
     .filter((product) => {
-      // Filtro por categoría
       if (
         filters.category &&
         product.category?.toLowerCase() !== filters.category.toLowerCase()
@@ -61,7 +69,6 @@ export default function FOO() {
         return false;
       }
 
-      // Filtro por material
       if (
         filters.material &&
         product.material?.toLowerCase() !== filters.material.toLowerCase()
@@ -69,7 +76,6 @@ export default function FOO() {
         return false;
       }
 
-      // Filtro por rango de precio
       if (filters.priceRange) {
         const price = parseFloat(product.price);
         if (
@@ -81,10 +87,9 @@ export default function FOO() {
         }
       }
 
-      return true; // Pasó todos los filtros
+      return true;
     })
     .sort((a, b) => {
-      // Ordenar productos según la selección
       if (sortBy === "priceLowToHigh") return a.price - b.price;
       if (sortBy === "priceHighToLow") return b.price - a.price;
       return 0;
@@ -133,25 +138,12 @@ export default function FOO() {
           ) : (
             <Row>
               {filteredProducts.map((product) => (
-                <Col key={product.id} sm={6} md={4} lg={3} className="mb-4">
-
-                  <Card className="border-0">
-                    <Card.Img
-                      variant="top"
-                      src={`${import.meta.env.VITE_IMG_PATH}${product.pic}`}
-                      className="rounded-0"
-                    />
-                    <Card.Body className="px-0 py-3">
-                      <Card.Title className="fs-6 fw-normal">
-                        {product.name}
-                      </Card.Title>
-                      <Card.Text className="fs-6 fw-bold">
-                        ${product.price.toFixed(2)}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-
-                  
+                <Col key={product.id} xs={12} sm={6} md={4} lg={3}>
+                  <ProductCard
+                    product={product}
+                    favorites={favorites} // Pasar favoritos como prop
+                    toggleFavorite={toggleFavorite} // Pasar toggleFavorite como prop
+                  />
                 </Col>
               ))}
             </Row>
@@ -159,7 +151,6 @@ export default function FOO() {
         </Container>
       </main>
 
-      {/* Offcanvas para los filtros */}
       <Offcanvas
         show={showFilters}
         onHide={() => setShowFilters(false)}
@@ -170,6 +161,7 @@ export default function FOO() {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Form>
+            {/* Categoría */}
             <Form.Group className="mb-4">
               <Form.Label className="text-uppercase fw-bold">
                 Categoría
@@ -187,6 +179,7 @@ export default function FOO() {
                 <option value="madera">Madera</option>
               </Form.Select>
             </Form.Group>
+            {/* Material */}
             <Form.Group className="mb-4">
               <Form.Label className="text-uppercase fw-bold">
                 Material
@@ -207,6 +200,7 @@ export default function FOO() {
                 <option value="perla">Perla</option>
               </Form.Select>
             </Form.Group>
+            {/* Rango de Precio */}
             <Form.Group className="mb-4">
               <Form.Label className="text-uppercase fw-bold">
                 Rango de Precio

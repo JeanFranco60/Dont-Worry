@@ -1,56 +1,49 @@
-// ProductCard.js
-import * as React from "react";
-import { Button } from "@/components/ui/button";
-import { Heart, Plus } from "lucide-react";
+import { Heart } from "lucide-react";
+import { Button } from "react-bootstrap";
 
-function ProductCard({ product, favorites, toggleFavorite }) {
+function ProductCard({ product, favorites = {}, toggleFavorite }) {
+  // Validar que product tenga un id válido y favorites esté definido
+  const isFavorite = Boolean(favorites?.[product?.id]);
+
+  // Si product no está definido, no renderizar nada
+  if (!product) {
+    console.error("El objeto 'product' no está definido.");
+    return null;
+  }
+
   return (
-    <div className="relative bg-transparent">
-      {/* Contenedor flex para dividir imagen y texto */}
-      <div className="flex flex-col h-full">
-        {/* Imagen del producto (ocupa el 90%) */}
-        <div className="relative overflow-hidden flex-1">
-          <img
-            src={`${import.meta.env.VITE_IMG_PATH}${product.pic}`}
-            alt={product.name}
-            className="object-cover w-full h-full"
+    <div className="mb-6">
+      <div className="relative">
+        <img
+          src={`${import.meta.env.VITE_IMG_PATH}${product.pic}`}
+          alt={product.name}
+          className="w-full object-cover"
+        />
+        <Button
+          size="icon"
+          variant="ghost"
+          className="absolute top-3 right-3 p-0 focus:outline-none bg-transparent"
+          onClick={() => toggleFavorite(product.id)} // Usar la función pasada como prop
+          aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+        >
+          <Heart
+            className={`w-7 h-7 transition-colors duration-300 ${
+              isFavorite
+                ? "fill-red-500 text-red-500"
+                : "fill-none text-gray-400 hover:fill-gray-400 hover:text-gray-400"
+            }`}
           />
-          <Button
-            size="icon"
-            variant="ghost"
-            className="absolute top-2 right-2 bg-white/80 hover:bg-white/90 h-6 w-6"
-            onClick={() => toggleFavorite(product.id)}
-          >
-            <Heart
-              className={`w-2 h-2 ${
-                favorites[product.id]
-                  ? "fill-black text-black"
-                  : "fill-gray text-gray-400"
-              }`}
-            />
-          </Button>
-
-          {/* Botón "+" flotante */}
-          <Button
-            size="icon"
-            className="absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black border-1  rounded-full text-white w-5 h-5 text-xs hover:bg-gray-100 hover:scale-110 transition-all"
-          >
-            <Plus />
-          </Button>
-        </div>
-
-        {/* Información del producto (debajo de la imagen) */}
-        <div className="bg-transparent ">
-          <h3 className="text-black font-medium text-base md:text-sm lg:text-base truncate m-0">
-            {product.name}
-          </h3>
-          <span className="text-black text-xs md:text-sm">
-            {product.category}
-            <p className="font-bold text-sm md:text-base m-0">
-              UYU {product.price}
-            </p>
-          </span>
-        </div>
+        </Button>
+      </div>
+      <div className="pt-1">
+        {/* Título del producto */}
+        <h3 className="m-0 text-sm font-semibold text-gray-800 truncate">
+          {product.name}
+        </h3>
+        {/* Precio del producto */}
+        <p className="text-lg font-bold text-gray-900">
+          ${product.price.toFixed(2)}
+        </p>
       </div>
     </div>
   );

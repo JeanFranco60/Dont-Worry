@@ -1,61 +1,107 @@
-import * as React from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import ProductCard from "../components/ProductCard";
-import Toast from "../components/ui/toast";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ProductCard from "./ProductCard.jsx";
 
-function FeaturedCarousel({ products, loading }) {
-  const [favorites, setFavorites] = React.useState({});
-  const [toastMessage, setToastMessage] = React.useState("");
+const PrevArrow = ({ onClick }) => (
+  <button
+    className="slick-prev"
+    style={{
+      backgroundColor: "black",
+      color: "white",
+      borderRadius: "50%",
+      padding: "10px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+    onClick={onClick}
+  ></button>
+);
 
-  const toggleFavorite = (productId) => {
-    setFavorites((prev) => ({
-      ...prev,
-      [productId]: !prev[productId],
-    }));
-    setToastMessage(productId);
+const NextArrow = ({ onClick }) => (
+  <button
+    className="slick-next"
+    style={{
+      backgroundColor: "black",
+      color: "white",
+      borderRadius: "50%",
+      padding: "10px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+    onClick={onClick}
+  ></button>
+);
+
+function FeaturedCarousel({ products, loading, favorites, toggleFavorite }) {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 0,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
     <section className="py-5" id="featured">
-      <div className="container mx-auto px-4">
+      <div className="container ">
         <h2 className="text-center mb-5 text-2xl font-bold">Destacados</h2>
 
         {loading ? (
           <p className="text-center">Cargando...</p>
         ) : (
-          <Carousel opts={{ align: "start" }} className="w-full ">
-            <CarouselContent className="">
-              {products.map((product) => (
-                <CarouselItem
-                  key={product.id}
-                  className="flex-shrink-0 w-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 p-2"
-                >
-                  {/* Usamos el nuevo componente ProductCard */}
-                  <ProductCard
-                    product={product}
-                    favorites={favorites}
-                    toggleFavorite={toggleFavorite}
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:block" />
-            <CarouselNext className="hidden md:block" />
-          </Carousel>
+          <Slider {...settings} className="m-3">
+            {products.map((product) => (
+              <div key={product.id} className="p-3">
+                <ProductCard
+                  product={product}
+                  favorites={favorites}
+                  toggleFavorite={toggleFavorite}
+                />
+              </div>
+            ))}
+          </Slider>
         )}
       </div>
-
-      <Toast
-        productId={toastMessage}
-        products={products}
-        favorites={favorites}
-      />
     </section>
   );
 }
