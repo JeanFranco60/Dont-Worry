@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Card, Button, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Spinner, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Navbar from "../components/NavigationBar";
 import Footer from "../components/Footer";
@@ -10,6 +10,7 @@ export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [favorites, setFavorites] = useState({}); // Estado para los favoritos
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -18,7 +19,7 @@ export default function HomePage() {
           `${import.meta.env.VITE_API_URL}/products`
         );
         if (!response.ok) {
-          throw new Error("Errorr al obtener los productos");
+          throw new Error("Error al obtener los productos");
         }
         const data = await response.json();
         setProducts(data.products || []);
@@ -31,6 +32,17 @@ export default function HomePage() {
 
     fetchProducts();
   }, []);
+
+  const toggleFavorite = (productId) => {
+    setFavorites((prev) => {
+      const isFavorite = !prev[productId];
+      return {
+        ...prev,
+        [productId]: isFavorite,
+      };
+    });
+  };
+
   if (loading) {
     return (
       <div className="vh-100 vw-100 d-flex align-items-center justify-content-center">
@@ -46,7 +58,6 @@ export default function HomePage() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <WhatsAppButton />
-
       <main>
         <Navbar />
         <section className="text-center bg-black text-white position-relative">
@@ -69,7 +80,12 @@ export default function HomePage() {
 
         {/* DESTACADOS */}
         <div className="bg-black-400">
-          <FeaturedCarousel products={products} loading={loading} />
+          <FeaturedCarousel
+            products={products} // Pasar los productos como prop
+            loading={loading} // Pasar el estado de carga como prop
+            favorites={favorites} // Pasar los favoritos como prop
+            toggleFavorite={toggleFavorite} // Pasar la función toggleFavorite como prop
+          />
         </div>
 
         {/* Nuestra Historia */}
@@ -108,51 +124,6 @@ export default function HomePage() {
           </Container>
         </section>
 
-        {/* Nuestra Colección */}
-        {/* <section className="py-5" id="collection">
-          <Container>
-            <h2 className="text-center mb-5">Nuestra Colección</h2>
-            <Row>
-              <Col md={4} className="mb-4">
-                <Card className="border-0 text-white">
-                  <Card.Img
-                    src="/placeholder.svg?text=Minimalista"
-                    alt="Colección Minimalista"
-                  />
-                  <Card.ImgOverlay className="d-flex flex-column justify-content-end">
-                    <Card.Title className="h3">Minimalista</Card.Title>
-                    <Button variant="outline-light">Explorar</Button>
-                  </Card.ImgOverlay>
-                </Card>
-              </Col>
-              <Col md={4} className="mb-4">
-                <Card className="border-0 text-white">
-                  <Card.Img
-                    src="/placeholder.svg?text=Urbano"
-                    alt="Colección Urbana"
-                  />
-                  <Card.ImgOverlay className="d-flex flex-column justify-content-end">
-                    <Card.Title className="h3">Urbano</Card.Title>
-                    <Button variant="outline-light">Explorar</Button>
-                  </Card.ImgOverlay>
-                </Card>
-              </Col>
-              <Col md={4} className="mb-4">
-                <Card className="border-0 text-white">
-                  <Card.Img
-                    src="/placeholder.svg?text=Elegante"
-                    alt="Colección Elegante"
-                  />
-                  <Card.ImgOverlay className="d-flex flex-column justify-content-end">
-                    <Card.Title className="h3">Elegante</Card.Title>
-                    <Button variant="outline-light">Explorar</Button>
-                  </Card.ImgOverlay>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
-        </section> */}
-
         {/* Lista VIP */}
         <section className="py-5 bg-black text-white" id="newsletter">
           <Container className="text-center">
@@ -179,7 +150,6 @@ export default function HomePage() {
           </Container>
         </section>
       </main>
-
       <Footer />
     </div>
   );

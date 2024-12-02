@@ -9,6 +9,8 @@ import {
   Spinner,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../components/NavigationBar";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
@@ -41,11 +43,19 @@ export default function FeaturedCarousel() {
   }, []);
 
   // Función para alternar los favoritos
-  const toggleFavorite = (productId) => {
-    setFavorites((prev) => ({
-      ...prev,
-      [productId]: !prev[productId],
-    }));
+  const toggleFavorite = (productId, productName) => {
+    setFavorites((prev) => {
+      const isFavorite = !prev[productId];
+      if (isFavorite) {
+        toast.success(`${productName} añadido a favoritos`);
+      } else {
+        toast.info(`${productName} eliminado de favoritos`);
+      }
+      return {
+        ...prev,
+        [productId]: isFavorite,
+      };
+    });
   };
 
   const handleFilterChange = (event) => {
@@ -99,6 +109,16 @@ export default function FeaturedCarousel() {
     <div className="d-flex flex-column min-vh-100">
       <Navbar />
       <WhatsAppButton />
+      <ToastContainer
+        className="custom-toast"
+        bodyClassName="custom-toast-body"
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={true}
+        closeButton={true}
+        theme="dark"
+        icon={false}
+      />
 
       <main className="flex-grow-1 py-5">
         <Container>
@@ -142,7 +162,9 @@ export default function FeaturedCarousel() {
                   <ProductCard
                     product={product}
                     favorites={favorites} // Pasar favoritos como prop
-                    toggleFavorite={toggleFavorite} // Pasar toggleFavorite como prop
+                    toggleFavorite={() =>
+                      toggleFavorite(product.id, product.name)
+                    }
                   />
                 </Col>
               ))}
@@ -150,7 +172,6 @@ export default function FeaturedCarousel() {
           )}
         </Container>
       </main>
-
       <Offcanvas
         show={showFilters}
         onHide={() => setShowFilters(false)}
@@ -194,33 +215,11 @@ export default function FeaturedCarousel() {
                 <option value="cuero">Cuero</option>
                 <option value="plata">Plata</option>
                 <option value="oro">Oro</option>
-                <option value="acero">Acero</option>
-                <option value="ónix">Ónix</option>
-                <option value="madera">Madera</option>
-                <option value="perla">Perla</option>
-              </Form.Select>
-            </Form.Group>
-            {/* Rango de Precio */}
-            <Form.Group className="mb-4">
-              <Form.Label className="text-uppercase fw-bold">
-                Rango de Precio
-              </Form.Label>
-              <Form.Select
-                name="priceRange"
-                onChange={handleFilterChange}
-                value={filters.priceRange}
-                className="border-0 border-bottom rounded-0"
-              >
-                <option value="">Todos</option>
-                <option value="under50">Menos de $50</option>
-                <option value="50to100">$50 - $100</option>
-                <option value="over100">Más de $100</option>
               </Form.Select>
             </Form.Group>
           </Form>
         </Offcanvas.Body>
       </Offcanvas>
-
       <Footer />
     </div>
   );

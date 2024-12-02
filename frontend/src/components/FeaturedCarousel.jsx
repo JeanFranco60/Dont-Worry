@@ -2,37 +2,53 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductCard from "./ProductCard.jsx";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa"; // Usando íconos de FontAwesome
+import { ToastContainer, toast } from "react-toastify"; // Importando Toast
 
 const PrevArrow = ({ onClick }) => (
   <button
     className="slick-prev"
     style={{
-      backgroundColor: "black",
-      color: "white",
+      backgroundColor: "white",
+      color: "black",
       borderRadius: "50%",
       padding: "10px",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      position: "absolute",
+      left: 0,
+      top: "50%",
+      transform: "translateY(-50%)",
+      zIndex: 1,
     }}
     onClick={onClick}
-  ></button>
+  >
+    <FaArrowLeft />
+  </button>
 );
 
 const NextArrow = ({ onClick }) => (
   <button
     className="slick-next"
     style={{
-      backgroundColor: "black",
-      color: "white",
+      backgroundColor: "white",
+      color: "black",
       borderRadius: "50%",
       padding: "10px",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      position: "absolute",
+      right: 0,
+      top: "50%",
+      transform: "translateY(-50%)",
+      zIndex: 1,
     }}
     onClick={onClick}
-  ></button>
+  >
+    <FaArrowRight />
+  </button>
 );
 
 function FeaturedCarousel({ products, loading, favorites, toggleFavorite }) {
@@ -81,6 +97,10 @@ function FeaturedCarousel({ products, loading, favorites, toggleFavorite }) {
     ],
   };
 
+  const handleFavoriteToggle = (productId, productName) => {
+    toggleFavorite(productId, productName);
+    toast.success(`${productName} añadido a favoritos`);
+  };
   return (
     <section className="py-5" id="featured">
       <div className="container ">
@@ -94,14 +114,27 @@ function FeaturedCarousel({ products, loading, favorites, toggleFavorite }) {
               <div key={product.id} className="p-3">
                 <ProductCard
                   product={product}
-                  favorites={favorites}
-                  toggleFavorite={toggleFavorite}
+                  isFavorite={favorites[product.id]}
+                  toggleFavorite={() =>
+                    handleFavoriteToggle(product.id, product.name)
+                  }
                 />
               </div>
             ))}
           </Slider>
         )}
       </div>
+
+      <ToastContainer
+        className="custom-toast"
+        bodyClassName="custom-toast-body"
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={true}
+        closeButton={true}
+        theme="dark"
+        icon={false}
+      />
     </section>
   );
 }
