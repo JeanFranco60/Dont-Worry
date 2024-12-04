@@ -16,7 +16,7 @@ import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
 import ProductCard from "../components/ProductCard";
 
-export default function FeaturedCarousel() {
+export default function Products() {
   const [filters, setFilters] = useState({
     category: "",
     material: "",

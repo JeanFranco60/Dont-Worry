@@ -10,7 +10,6 @@ export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [favorites, setFavorites] = useState({}); // Estado para los favoritos
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -32,16 +31,6 @@ export default function HomePage() {
 
     fetchProducts();
   }, []);
-
-  const toggleFavorite = (productId) => {
-    setFavorites((prev) => {
-      const isFavorite = !prev[productId];
-      return {
-        ...prev,
-        [productId]: isFavorite,
-      };
-    });
-  };
 
   if (loading) {
     return (
@@ -81,17 +70,14 @@ export default function HomePage() {
         {/* DESTACADOS */}
         <div className="bg-black-400">
           <FeaturedCarousel
-            products={products} // Pasar los productos como prop
-            loading={loading} // Pasar el estado de carga como prop
-            favorites={favorites} // Pasar los favoritos como prop
-            toggleFavorite={toggleFavorite} // Pasar la función toggleFavorite como prop
+            products={products} // Pasar los productos como
           />
         </div>
 
         {/* Nuestra Historia */}
-        <section className="py-5 bg-light" id="about">
+        <section className="py-5 bg-custom-light" id="about">
           <Container>
-            <Row className="align-items-center border-dashed border-2 border-black">
+            <Row className="align-items-center border-dashed border-2 border-black p-5">
               <Col md={6} className="mb-4 mb-md-0 aboutUs-col">
                 <img
                   src="/img/efimero.jpg"

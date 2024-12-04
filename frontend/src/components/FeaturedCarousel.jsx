@@ -2,56 +2,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductCard from "./ProductCard.jsx";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa"; // Usando íconos de FontAwesome
-import { ToastContainer, toast } from "react-toastify"; // Importando Toast
 
-const PrevArrow = ({ onClick }) => (
-  <button
-    className="slick-prev"
-    style={{
-      backgroundColor: "white",
-      color: "black",
-      borderRadius: "50%",
-      padding: "10px",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      position: "absolute",
-      left: 0,
-      top: "50%",
-      transform: "translateY(-50%)",
-      zIndex: 1,
-    }}
-    onClick={onClick}
-  >
-    <FaArrowLeft />
-  </button>
-);
+import { ToastContainer,  } from "react-toastify";
 
-const NextArrow = ({ onClick }) => (
-  <button
-    className="slick-next"
-    style={{
-      backgroundColor: "white",
-      color: "black",
-      borderRadius: "50%",
-      padding: "10px",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      position: "absolute",
-      right: 0,
-      top: "50%",
-      transform: "translateY(-50%)",
-      zIndex: 1,
-    }}
-    onClick={onClick}
-  >
-    <FaArrowRight />
-  </button>
-);
-
-function FeaturedCarousel({ products, loading, favorites, toggleFavorite }) {
+function FeaturedCarousel({ products, loading }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -61,8 +15,7 @@ function FeaturedCarousel({ products, loading, favorites, toggleFavorite }) {
     arrows: true,
     autoplay: true,
     autoplaySpeed: 3000,
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
+
     responsive: [
       {
         breakpoint: 1200,
@@ -97,12 +50,8 @@ function FeaturedCarousel({ products, loading, favorites, toggleFavorite }) {
     ],
   };
 
-  const handleFavoriteToggle = (productId, productName) => {
-    toggleFavorite(productId, productName);
-    toast.success(`${productName} añadido a favoritos`);
-  };
   return (
-    <section className="py-5" id="featured">
+    <section className="py-5 bg-custom-light" id="featured">
       <div className="container ">
         <h2 className="text-center mb-5 text-2xl font-bold">Destacados</h2>
 
@@ -112,13 +61,8 @@ function FeaturedCarousel({ products, loading, favorites, toggleFavorite }) {
           <Slider {...settings} className="m-3">
             {products.map((product) => (
               <div key={product.id} className="p-3">
-                <ProductCard
-                  product={product}
-                  isFavorite={favorites[product.id]}
-                  toggleFavorite={() =>
-                    handleFavoriteToggle(product.id, product.name)
-                  }
-                />
+                <ProductCard product={product}
+                 />
               </div>
             ))}
           </Slider>
