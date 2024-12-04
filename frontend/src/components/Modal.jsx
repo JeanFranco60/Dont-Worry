@@ -13,15 +13,13 @@ export function ProductModal({ product, addToCart, isOpen, onClose }) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      {" "}
-      {/* Controlamos el estado de apertura del modal */}
-      <DialogContent className="max-w-full sm:max-w-md md:max-w-2xl lg:max-w-3xl w-full p-4 md:p-6">
+      <DialogContent className="max-w-full sm:max-w-md md:max-w-2xl lg:max-w-3xl w-full p-4 md:p-6  bg-custom-light">
         <DialogHeader>
           <DialogTitle className="text-lg md:text-2xl font-bold">
             {product.name}
           </DialogTitle>
-          <DialogDescription className="text-sm md:text-lg">
-            Precio: ${product.price.toFixed(2)}
+          <DialogDescription className="text-sm md:text-lg text-bold">
+            <strong>Precio: ${product.price.toFixed(2)}</strong>
           </DialogDescription>
         </DialogHeader>
 
@@ -41,19 +39,20 @@ export function ProductModal({ product, addToCart, isOpen, onClose }) {
               {product.description || "Sin descripción."}
             </p>
 
-            <DialogFooter className="flex flex-col sm:flex-row gap-4">
+            <DialogFooter className="flex flex-col sm:flex-row gap-4 border-border">
               <Button
-                className="w-full sm:w-auto"
-                onClick={() => addToCart(product.id)}
+                variant="primary"
+                className="w-full sm:w-auto border border-gray-300 hover:border-gray-400 focus:outline-none"
+                onClick={onClose}
               >
-                Agregar al carrito
+                Cerrar
               </Button>
               <Button
                 variant="outline"
                 className="w-full sm:w-auto"
-                onClick={onClose}
+                onClick={() => addToCart(product.id)}
               >
-                Cerrar
+                Agregar al carrito
               </Button>
             </DialogFooter>
           </div>
