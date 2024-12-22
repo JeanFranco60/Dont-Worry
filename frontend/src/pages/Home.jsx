@@ -75,38 +75,40 @@ export default function HomePage() {
         </div>
 
         {/* Nuestra Historia */}
-        <section className="py-5 bg-custom-light" id="about">
+        <section className="py-5 " id="about">
           <Container>
-            <Row className="align-items-center border-dashed border-2 border-black p-5">
-              <Col md={6} className="mb-4 mb-md-0 aboutUs-col">
-                <img
-                  src="/img/efimero.jpg"
-                  alt="About Us"
-                  className="aboutUs-img"
-                />
-              </Col>
-              <Col md={6} className="aboutUs-text ">
-                <h2 className="mb-4">Nuestra Historia</h2>
-                <p className="lead">
-                  En Dont't Worry, creemos que los accesorios son más que
-                  simples complementos. Son una extensión de tu personalidad y
-                  estilo.
-                </p>
-                <p>
-                  Fundada en 2024, nuestra marca se dedica a crear collares
-                  únicos que combinan diseño moderno con artesanía tradicional.
-                  Cada pieza está diseñada para el hombre que aprecia la calidad
-                  y la distinción.
-                </p>
+            <div className="border-dashed border-2 border-black p-4">
+              <Row className="align-items-center p-3">
+                <Col md={6} className="mb-4 mb-md-0 aboutUs-col">
+                  <img
+                    src="/img/efimero.jpg"
+                    alt="About Us"
+                    className="aboutUs-img"
+                  />
+                </Col>
+                <Col md={6} className="aboutUs-text ">
+                  <h2 className="mb-4">Nuestra Historia</h2>
+                  <p className="">
+                    En Dont't Worry, creemos que los accesorios son más que
+                    simples complementos. Son una extensión de tu personalidad y
+                    estilo.
+                  </p>
+                  <p className="hidden sm:block">
+                    Fundada en 2024, nuestra marca se dedica a crear collares
+                    únicos que combinan diseño moderno con artesanía
+                    tradicional. Cada pieza está diseñada para el hombre que
+                    aprecia la calidad y la distinción.
+                  </p>
 
-                <Link
-                  to="/about"
-                  className="btn btn-outline-light bg-dark text-white border-dark"
-                >
-                  Ver Más
-                </Link>
-              </Col>
-            </Row>
+                  <Link
+                    to="/about"
+                    className="btn btn-outline-light bg-dark text-white border-dark"
+                  >
+                    Ver Más
+                  </Link>
+                </Col>
+              </Row>
+            </div>
           </Container>
         </section>
 
