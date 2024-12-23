@@ -13,46 +13,58 @@ export function ProductModal({ product, addToCart, isOpen, onClose }) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-full sm:max-w-md md:max-w-2xl lg:max-w-3xl w-full p-4 md:p-6 ">
+      <DialogContent
+        className="max-w-full sm:max-w-md md:max-w-lg lg:max-w-3xl w-full p-4 md:p-6 rounded-lg shadow-lg overflow-hidden"
+        style={{ maxHeight: "90vh" }} // Altura máxima del modal para permitir desplazamiento
+      >
+        {/* Encabezado del modal */}
         <DialogHeader>
-          <DialogTitle className="text-lg md:text-2xl font-bold">
+          <DialogTitle className="text-xl md:text-2xl font-bold text-center">
             {product.name}
           </DialogTitle>
-          <DialogDescription className="text-sm md:text-lg text-bold">
+          <DialogDescription className="text-center text-sm md:text-lg mt-2 text-gray-600">
             <strong>Precio: ${product.price.toFixed(2)}</strong>
           </DialogDescription>
         </DialogHeader>
 
-        <div className="flex flex-col md:flex-row gap-4 md:gap-6 py-4">
-          {/* Imagen del producto */}
-          <div className="flex-1">
+        {/* Contenido principal con desplazamiento */}
+        <div
+          className="flex flex-col md:flex-row gap-6 py-4 overflow-auto"
+          style={{ maxHeight: "calc(80vh - 100px)" }} // Limita la altura para desplazamiento interno
+        >
+          {/* Imagen destacada del producto */}
+          <div className="flex-1 max-w-md mx-auto md:mx-0 md:max-w-none">
             <img
               src={`${import.meta.env.VITE_IMG_PATH}${product.pic}`}
               alt={product.name}
-              className="w-full h-auto object-cover rounded-md"
+              className="w-full h-auto object-contain rounded-lg shadow-md"
+              style={{ maxHeight: "400px" }} // Asegura que la imagen no sea demasiado alta
             />
           </div>
 
-          {/* Descripción y botones */}
+          {/* Detalles y acciones */}
           <div className="flex-1 flex flex-col justify-between">
-            <p className="text-sm md:text-base mb-4">
-              {product.description || "Sin descripción."}
+            {/* Descripción del producto */}
+            <p className="text-sm md:text-base text-gray-700 mb-6">
+              {product.description ||
+                "Este producto no tiene una descripción detallada."}
             </p>
 
-            <DialogFooter className="flex flex-col sm:flex-row gap-4 border-border">
-              <Button
-                variant="primary"
-                className="w-full sm:w-auto focus:outline-none"
-                onClick={onClose}
-              >
-                Cerrar
-              </Button>
+            {/* Acciones */}
+            <DialogFooter className="flex flex-col sm:flex-row gap-4 border-t pt-4">
               <Button
                 variant="outline"
                 className="w-full sm:w-auto"
                 onClick={() => addToCart(product.id)}
               >
                 Agregar al carrito
+              </Button>
+              <Button
+                variant="secondary"
+                className="w-full sm:w-auto"
+                onClick={onClose}
+              >
+                Seguir explorando
               </Button>
             </DialogFooter>
           </div>

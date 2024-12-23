@@ -41,7 +41,7 @@ function Footer() {
           </Col>
           <Col xs={12} md={3} className="mb-3 mb-md-0">
             <h5 className="text-uppercase fw-bold mb-3">Contacto</h5>
-            <p className="small mb-0">Email: info@dontworry.com</p>
+            <p className="small mb-0">Email: duwproyect@gmail.com</p>
             <p className="small">Teléfono: (+598) 99-789-800</p>
           </Col>
           <Col xs={12} md={3}>

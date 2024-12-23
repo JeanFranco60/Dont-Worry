@@ -51,7 +51,7 @@ function FeaturedCarousel({ products, loading }) {
   };
 
   return (
-    <section className="py-5" id="featured">
+    <section className="py-2" id="featured">
       <div className="container">
         <h2 className="text-center text-2xl font-bold pb-3">Destacados</h2>
 
