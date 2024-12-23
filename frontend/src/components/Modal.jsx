@@ -13,7 +13,7 @@ export function ProductModal({ product, addToCart, isOpen, onClose }) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-full sm:max-w-md md:max-w-2xl lg:max-w-3xl w-full p-4 md:p-6  bg-custom-light">
+      <DialogContent className="max-w-full sm:max-w-md md:max-w-2xl lg:max-w-3xl w-full p-4 md:p-6 ">
         <DialogHeader>
           <DialogTitle className="text-lg md:text-2xl font-bold">
             {product.name}
@@ -42,7 +42,7 @@ export function ProductModal({ product, addToCart, isOpen, onClose }) {
             <DialogFooter className="flex flex-col sm:flex-row gap-4 border-border">
               <Button
                 variant="primary"
-                className="w-full sm:w-auto border border-gray-300 hover:border-gray-400 focus:outline-none"
+                className="w-full sm:w-auto focus:outline-none"
                 onClick={onClose}
               >
                 Cerrar

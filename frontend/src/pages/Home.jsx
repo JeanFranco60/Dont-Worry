@@ -10,6 +10,7 @@ export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -75,7 +76,43 @@ export default function HomePage() {
         </div>
 
         {/* Nuestra Historia */}
-        <section className="py-5 " id="about">
+        <section className="py-5 block sm:hidden" id="about">
+          <Container>
+            <div className="border-dashed border-2 border-black p-4">
+              <h2 className="mb-4 text-center">Nuestra Historia</h2>
+              <Row className="align-items-center p-2">
+                <Col xs={6} className="mb-4 mb-md-0 aboutUs-col">
+                  <img
+                    src="/img/efimero.jpg"
+                    alt="About Us"
+                    className="aboutUs-img"
+                  />
+                </Col>
+                <Col xs={6} className="aboutUs-text">
+                  <p className="text-xs">
+                    En Dont't Worry, creemos que los accesorios son más que
+                    simples complementos. Son una extensión de tu personalidad y
+                    estilo.
+                  </p>
+                  <p className="hidden sm:block">
+                    Fundada en 2024, nuestra marca se dedica a crear collares
+                    únicos que combinan diseño moderno con artesanía
+                    tradicional. Cada pieza está diseñada para el hombre que
+                    aprecia la calidad y la distinción.
+                  </p>
+                </Col>
+                <Link
+                  to="/about"
+                  className="btn btn-outline-light bg-black text-white border-dark"
+                >
+                  Ver Más
+                </Link>
+              </Row>
+            </div>
+          </Container>
+        </section>
+
+        <section className="py-5 hidden sm:block" id="about">
           <Container>
             <div className="border-dashed border-2 border-black p-4">
               <Row className="align-items-center p-3">
@@ -86,9 +123,9 @@ export default function HomePage() {
                     className="aboutUs-img"
                   />
                 </Col>
-                <Col md={6} className="aboutUs-text ">
+                <Col md={6} className="aboutUs-text">
                   <h2 className="mb-4">Nuestra Historia</h2>
-                  <p className="">
+                  <p>
                     En Dont't Worry, creemos que los accesorios son más que
                     simples complementos. Son una extensión de tu personalidad y
                     estilo.
