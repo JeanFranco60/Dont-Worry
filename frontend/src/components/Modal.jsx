@@ -13,11 +13,7 @@ export function ProductModal({ product, addToCart, isOpen, onClose }) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent
-        className="max-w-full sm:max-w-md md:max-w-lg lg:max-w-3xl w-full p-4 md:p-6 rounded-lg shadow-lg overflow-hidden"
-        style={{ maxHeight: "90vh" }} // Altura máxima del modal para permitir desplazamiento
-      >
-        {/* Encabezado del modal */}
+      <DialogContent className="max-w-full sm:max-w-md md:max-w-2xl lg:max-w-3xl w-full p-4 md:p-6 ">
         <DialogHeader>
           <DialogTitle className="text-xl md:text-2xl font-bold text-center">
             {product.name}
@@ -50,8 +46,14 @@ export function ProductModal({ product, addToCart, isOpen, onClose }) {
                 "Este producto no tiene una descripción detallada."}
             </p>
 
-            {/* Acciones */}
-            <DialogFooter className="flex flex-col sm:flex-row gap-4 border-t pt-4">
+            <DialogFooter className="flex flex-col sm:flex-row gap-4 border-border">
+              <Button
+                variant="primary"
+                className="w-full sm:w-auto focus:outline-none"
+                onClick={onClose}
+              >
+                Cerrar
+              </Button>
               <Button
                 variant="outline"
                 className="w-full sm:w-auto"

@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductCard from "./ProductCard.jsx";
 
-import { ToastContainer } from "react-toastify";
+import { ToastContainer,  } from "react-toastify";
 
 function FeaturedCarousel({ products, loading }) {
   const settings = {
@@ -36,14 +36,14 @@ function FeaturedCarousel({ products, loading }) {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 0,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
@@ -60,14 +60,9 @@ function FeaturedCarousel({ products, loading }) {
         ) : (
           <Slider {...settings} className="m-3">
             {products.map((product) => (
-              <div
-                key={product.id}
-                className="p-1 flex justify-center items-center"
-              >
-                <div className="w-full max-w-sm ">
-                  {/* Aquí el ProductCard es más grande */}
-                  <ProductCard product={product} />
-                </div>
+              <div key={product.id} className="p-3">
+                <ProductCard product={product}
+                 />
               </div>
             ))}
           </Slider>

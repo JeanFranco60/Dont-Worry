@@ -1,8 +1,10 @@
-import animate from "tailwindcss-animate";
-
+// tailwind.config.js
 export default {
   darkMode: ["class"],
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}", // Ajusta según tu estructura de proyecto
+  ],
   theme: {
     extend: {
       borderRadius: {
@@ -11,7 +13,7 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
-        "custom-light": "#D6D4CB",
+        "custom-light": "#D6D4CB", // Color personalizado
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -55,5 +57,5 @@ export default {
       },
     },
   },
-  plugins: [animate], // Usar el plugin importado
+  plugins: [require("tailwindcss-animate")], // Plugin para animaciones
 };
