@@ -29,7 +29,7 @@
 /* heeader-image */
 /* Hero Section */
 .hero-section {
-  background-image: url("img/cadena2.jpg"); /* URL de tu imagen */
+  background-image: url("/src/assets/cadena2.jpg"); /* URL de tu imagen */
   background-size: cover; /* La imagen cubre completamente el contenedor */
   background-position: center center; /* Centra la imagen */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
@@ -63,7 +63,7 @@
 }
 
 .hero-content h1 {
-  font-size: 2.5rem; /* Ajusta el tamaño del título */
+  font-size: 2rem; /* Ajusta el tamaño del título */
 }
 
 .hero-content p {

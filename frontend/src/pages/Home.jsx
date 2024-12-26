@@ -52,14 +52,14 @@ export default function HomePage() {
         <section className="hero-section">
           <Container>
             <div className="hero-content">
-              <h1 className="display-6 fw-bold mb-3">Elevá tu Estilo</h1>
-              <p className="lead">
+              <h1 className="fw-bold mb-3 tracking-widest">Elevá tu Estilo</h1>
+              <p className="lead tracking-widest">
                 Descubre nuestra colección exclusiva de collares para el hombre
                 moderno
               </p>
               <Link
                 to="/products"
-                className="btn btn-sm btn-outline-light bg-dark text-white border-dark"
+                className="btn btn-sm btn-outline-light bg-dark text-white border-dark tracking-widest"
               >
                 Ver Colección
               </Link>
