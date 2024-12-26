@@ -7,7 +7,7 @@ function BershkaNavbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 550);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -32,24 +32,14 @@ function BershkaNavbar() {
         {/* Menú Izquierdo */}
         <div className="hidden md:flex space-x-6">
           <Link
-            to="/hombre"
+            to="/products"
             className={`text-sm font-medium ${
               isWhiteBackground
                 ? "text-black hover:text-gray-700"
                 : "text-white hover:text-gray-200"
             } transition-transform transform duration-300 hover:scale-105`}
           >
-            HOMBRE
-          </Link>
-          <Link
-            to="/mujer"
-            className={`text-sm font-medium ${
-              isWhiteBackground
-                ? "text-black hover:text-gray-700"
-                : "text-white hover:text-gray-200"
-            } transition-transform transform duration-300 hover:scale-105`}
-          >
-            MUJER
+            PRODUCTOS
           </Link>
           <Link
             to="/novedades"
@@ -61,20 +51,6 @@ function BershkaNavbar() {
           >
             NOVEDADES
           </Link>
-        </div>
-
-        {/* Logo */}
-        <Link
-          to="/"
-          className={`text-xl font-bold uppercase tracking-widest no-underline transition-transform transform duration-300 hover:scale-105 ${
-            isWhiteBackground ? "text-black" : "text-white"
-          }`}
-        >
-          Don't U Worry
-        </Link>
-
-        {/* Menú Derecho */}
-        <div className="hidden md:flex space-x-6">
           <Link
             to="/accesorios"
             className={`text-sm font-medium ${
@@ -85,6 +61,22 @@ function BershkaNavbar() {
           >
             ACCESORIOS
           </Link>
+        </div>
+
+        {/* Logo Centrado */}
+        <div className="absolute left-1/2 transform -translate-x-1/2">
+          <Link
+            to="/"
+            className={`text-xl font-bold uppercase tracking-widest no-underline transition-transform transform duration-300 hover:scale-105 ${
+              isWhiteBackground ? "text-black" : "text-white"
+            }`}
+          >
+            Don't U Worry
+          </Link>
+        </div>
+
+        {/* Menú Derecho */}
+        <div className="hidden md:flex space-x-8">
           <Link
             to="/cuenta"
             className={`text-sm font-medium ${

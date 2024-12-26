@@ -49,11 +49,11 @@ export default function HomePage() {
       <WhatsAppButton />
       <main>
         <Navbar />
-        <section className="text-center bg-black text-white position-relative">
+        <section className="hero-section">
           <Container>
-            <div className="py-5">
-              <h1 className="display-4 fw-bold mb-3 ">Elevá tu Estilo</h1>
-              <p className="lead mb-4">
+            <div className="hero-content">
+              <h1 className="display-6 fw-bold mb-3">Elevá tu Estilo</h1>
+              <p className="lead">
                 Descubre nuestra colección exclusiva de collares para el hombre
                 moderno
               </p>

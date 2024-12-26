@@ -26,7 +26,54 @@
   height: 32px;
 }
 
-/* carrousel */
+/* heeader-image */
+/* Hero Section */
+.hero-section {
+  background-image: url("img/cadena2.jpg"); /* URL de tu imagen */
+  background-size: cover; /* La imagen cubre completamente el contenedor */
+  background-position: center center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  position: relative; /* Asegura el posicionamiento para superposiciones */
+  color: white; /* Color del texto */
+  display: flex; /* Utiliza flexbox para centrar */
+  align-items: center; /* Centra verticalmente el contenido */
+  justify-content: center; /* Centra horizontalmente el contenido */
+  text-align: center; /* Centra el texto */
+  height: 80vh; /* Ocupa toda la altura de la pantalla */
+  margin: 0; /* Elimina márgenes externos */
+  padding: 0; /* Elimina el relleno adicional */
+}
+
+.hero-section::before {
+  content: ""; /* Elemento pseudo para superposición */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Superposición negra con transparencia */
+  z-index: 1; /* Asegura que esté debajo del contenido */
+}
+
+.hero-content {
+  position: relative; /* Asegura que el contenido esté sobre la superposición */
+  z-index: 2; /* Coloca el contenido sobre la superposición */
+  padding: 0 1rem; /* Añade un pequeño espacio interno */
+  text-align: center; /* Centra el texto dentro del contenedor */
+}
+
+.hero-content h1 {
+  font-size: 2.5rem; /* Ajusta el tamaño del título */
+}
+
+.hero-content p {
+  font-size: 1.25rem; /* Ajusta el tamaño del texto */
+  margin-top: 5rem; /* Incrementa el espacio debajo del texto */
+}
+
+.hero-content a {
+  margin-top: 5rem; /* Añade espacio adicional encima del botón */
+}
 
 /* -----------------Nuestra Historia -------------------*/
 .aboutUs-col {
