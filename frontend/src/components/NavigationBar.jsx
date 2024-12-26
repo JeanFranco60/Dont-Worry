@@ -78,7 +78,7 @@ function BershkaNavbar() {
         {/* Menú Derecho */}
         <div className="hidden md:flex space-x-8">
           <Link
-            to="/cuenta"
+            to="/login"
             className={`text-sm font-medium ${
               isWhiteBackground
                 ? "text-black hover:text-gray-700"
@@ -88,7 +88,7 @@ function BershkaNavbar() {
             CUENTA
           </Link>
           <Link
-            to="/carrito"
+            to="/login"
             className={`text-sm font-medium ${
               isWhiteBackground
                 ? "text-black hover:text-gray-700"
@@ -158,14 +158,14 @@ function BershkaNavbar() {
             ACCESORIOS
           </Link>
           <Link
-            to="/cuenta"
+            to="/login"
             className="text-sm font-medium text-black underline underline-offset-4 transition-transform duration-300 hover:scale-105"
             onClick={() => setIsMenuOpen(false)}
           >
             CUENTA
           </Link>
           <Link
-            to="/carrito"
+            to="/login"
             className="text-sm font-medium text-black underline underline-offset-4 transition-transform duration-300 hover:scale-105"
             onClick={() => setIsMenuOpen(false)}
           >
