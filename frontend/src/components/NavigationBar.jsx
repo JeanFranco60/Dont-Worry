@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import UserIcon from "../components/UserIcon";
 
-function BershkaNavbar() {
+function NavigationBar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 550);
+      setIsScrolled(window.scrollY > 570);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -41,6 +42,7 @@ function BershkaNavbar() {
           >
             PRODUCTOS
           </Link>
+
           <Link
             to="/novedades"
             className={`text-sm font-medium ${
@@ -87,6 +89,7 @@ function BershkaNavbar() {
           >
             CUENTA
           </Link>
+
           <Link
             to="/login"
             className={`text-sm font-medium ${
@@ -97,6 +100,10 @@ function BershkaNavbar() {
           >
             CARRITO
           </Link>
+
+          <div className="flex items-center">
+            <UserIcon></UserIcon>
+          </div>
         </div>
 
         {/* Menú Hamburguesa (Móvil) */}
@@ -143,6 +150,15 @@ function BershkaNavbar() {
           >
             PRODUCTOS
           </Link>
+
+          <Link
+            to="/logout"
+            className="text-sm font-medium text-black underline underline-offset-4 transition-transform duration-300 hover:scale-105"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            CERRAR SESIÓN
+          </Link>
+
           <Link
             to="/novedades"
             className="text-sm font-medium text-black underline underline-offset-4 transition-transform duration-300 hover:scale-105"
@@ -177,4 +193,4 @@ function BershkaNavbar() {
   );
 }
 
-export default BershkaNavbar;
+export default NavigationBar;
