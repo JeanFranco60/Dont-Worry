@@ -1,12 +1,10 @@
 import {
-  FaUserCircle,
   FaUser,
   FaSignOutAlt,
   FaEdit,
   FaSignInAlt,
   FaUserPlus,
 } from "react-icons/fa"; // Importa los íconos necesarios
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { useState, useEffect, useRef } from "react";
@@ -18,10 +16,10 @@ function UserIcon() {
   const token = useSelector((state) => state.auth.token);
 
   const [open, setOpen] = useState(false);
-  let menuRef = useRef();
+  const menuRef = useRef();
 
   useEffect(() => {
-    let handler = (e) => {
+    const handler = (e) => {
       if (!menuRef.current.contains(e.target)) {
         setOpen(false);
       }
@@ -32,7 +30,7 @@ function UserIcon() {
     return () => {
       document.removeEventListener("mousedown", handler);
     };
-  });
+  }, []);
 
   const handleToggle = (isOpen) => {
     setOpen(isOpen);
@@ -45,10 +43,9 @@ function UserIcon() {
           as={Link}
           to="#"
           id="dropdown-basic"
-          className="menu_trigger"
+          className="menu_trigger d-flex align-items-center p-0 border-0 bg-transparent"
           onClick={() => setOpen(!open)}
         >
-          {/* <FaUserCircle size={30} className="text-white" /> */}
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
             <AvatarFallback>CN</AvatarFallback>
@@ -56,10 +53,11 @@ function UserIcon() {
         </Dropdown.Toggle>
 
         <Dropdown.Menu
-          className={`dropdown_menu border z-3 text-decoration-none ${
-            open ? "active" : "inactive"
+          className={`dropdown-menu border shadow-lg z-3 text-decoration-none bg-black ${
+            open ? "show" : ""
           }`}
           ref={menuRef}
+          style={{ right: 0, left: "auto" }} // Menú a la derecha
         >
           <Dropdown.Header>
             {token === "" ? "" : "Nombre de usuario"}

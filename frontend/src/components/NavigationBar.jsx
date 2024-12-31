@@ -31,10 +31,10 @@ function NavigationBar() {
     >
       <div className="container mx-auto flex justify-between items-center px-4 lg:px-10 py-3 transition-all duration-300">
         {/* Menú Izquierdo */}
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex space-x-6 items-center">
           <Link
             to="/products"
-            className={`text-sm font-medium ${
+            className={`flex items-center text-sm font-medium ${
               isWhiteBackground
                 ? "text-black hover:text-gray-700"
                 : "text-white hover:text-gray-200"
@@ -45,7 +45,7 @@ function NavigationBar() {
 
           <Link
             to="/novedades"
-            className={`text-sm font-medium ${
+            className={`flex items-center text-sm font-medium ${
               isWhiteBackground
                 ? "text-black hover:text-gray-700"
                 : "text-white hover:text-gray-200"
@@ -53,9 +53,10 @@ function NavigationBar() {
           >
             NOVEDADES
           </Link>
+
           <Link
             to="/accesorios"
-            className={`text-sm font-medium ${
+            className={`flex items-center text-sm font-medium ${
               isWhiteBackground
                 ? "text-black hover:text-gray-700"
                 : "text-white hover:text-gray-200"
@@ -78,10 +79,10 @@ function NavigationBar() {
         </div>
 
         {/* Menú Derecho */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-8 items-center">
           <Link
             to="/login"
-            className={`text-sm font-medium ${
+            className={`flex items-center text-sm font-medium ${
               isWhiteBackground
                 ? "text-black hover:text-gray-700"
                 : "text-white hover:text-gray-200"
@@ -92,7 +93,7 @@ function NavigationBar() {
 
           <Link
             to="/login"
-            className={`text-sm font-medium ${
+            className={`flex items-center text-sm font-medium ${
               isWhiteBackground
                 ? "text-black hover:text-gray-700"
                 : "text-white hover:text-gray-200"
@@ -102,7 +103,7 @@ function NavigationBar() {
           </Link>
 
           <div className="flex items-center">
-            <UserIcon></UserIcon>
+            <UserIcon />
           </div>
         </div>
 
@@ -187,6 +188,8 @@ function NavigationBar() {
           >
             CARRITO
           </Link>
+
+          <UserIcon />
         </div>
       </div>
     </nav>
