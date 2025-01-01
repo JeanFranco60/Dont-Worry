@@ -53,7 +53,7 @@ function UserIcon() {
         </Dropdown.Toggle>
 
         <Dropdown.Menu
-          className={`dropdown-menu border shadow-lg z-3 text-decoration-none bg-black ${
+          className={`dropdown-menu border shadow-lg z-3 text-decoration-none bg-white ${
             open ? "show" : ""
           }`}
           ref={menuRef}
