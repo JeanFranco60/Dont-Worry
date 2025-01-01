@@ -159,16 +159,16 @@ function NavigationBar() {
           >
             CERRAR SESIÓN
           </Link>
-
+          {/* 
           <Link
             to="/novedades"
             className="text-sm font-medium text-black underline underline-offset-4 transition-transform duration-300 hover:scale-105"
             onClick={() => setIsMenuOpen(false)}
           >
             NOVEDADES
-          </Link>
+          </Link> */}
           <Link
-            to="/accesorios"
+            to="/accessories"
             className="text-sm font-medium text-black underline underline-offset-4 transition-transform duration-300 hover:scale-105"
             onClick={() => setIsMenuOpen(false)}
           >
