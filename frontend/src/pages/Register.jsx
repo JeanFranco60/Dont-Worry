@@ -16,7 +16,7 @@ const Register = () => {
     setError(""); // Limpiar errores anteriores
     setLoading(true); // Mostrar indicador de carga
 
-    // Validar los campos
+    // Validar los campos localmente
     if (!name || !surname || !email || !password) {
       setError("Por favor, completa todos los campos.");
       setLoading(false);
@@ -25,24 +25,19 @@ const Register = () => {
 
     try {
       // Realizar la solicitud al backend
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/users`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ name, surname, email, password }),
-        }
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, surname, email, password }),
+      });
+
+      const data = await response.json();
 
       if (!response.ok) {
         // Manejo de errores del servidor
-        const message =
-          response.status === 409
-            ? "El correo electrónico ya está registrado."
-            : "Ocurrió un error al registrarse. Intenta nuevamente.";
-        throw new Error(message);
+        throw new Error(data.error || "Ocurrió un error al registrarse.");
       }
 
       // Si todo sale bien, navegar al login
@@ -56,7 +51,17 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-100 to-gray-200">
-      <div className="flex-grow flex items-center justify-center px-4">
+      {/* Barra de navegación */}
+      <nav className="w-full font-bold bg-black text-center flex items-center justify-center py-3">
+        <Link
+          to="/"
+          className="text-xl uppercase tracking-widest no-underline text-white"
+        >
+          Don't U Worry
+        </Link>
+      </nav>
+
+      <div className="flex-grow flex items-center justify-center pt-5">
         <div className="w-full max-w-lg bg-white p-8 shadow-xl rounded-lg">
           {/* Título */}
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">

@@ -20,7 +20,7 @@ function UserIcon() {
 
   useEffect(() => {
     const handler = (e) => {
-      if (!menuRef.current.contains(e.target)) {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
         setOpen(false);
       }
     };

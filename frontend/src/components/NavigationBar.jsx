@@ -88,17 +88,6 @@ function NavigationBar() {
                 : "text-white hover:text-gray-200"
             } transition-transform transform duration-300 hover:scale-105`}
           >
-            CUENTA
-          </Link>
-
-          <Link
-            to="/login"
-            className={`flex items-center text-sm font-medium ${
-              isWhiteBackground
-                ? "text-black hover:text-gray-700"
-                : "text-white hover:text-gray-200"
-            } transition-transform transform duration-300 hover:scale-105`}
-          >
             CARRITO
           </Link>
 
@@ -174,13 +163,7 @@ function NavigationBar() {
           >
             ACCESORIOS
           </Link>
-          <Link
-            to="/login"
-            className="text-sm font-medium text-black underline underline-offset-4 transition-transform duration-300 hover:scale-105"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            CUENTA
-          </Link>
+
           <Link
             to="/login"
             className="text-sm font-medium text-black underline underline-offset-4 transition-transform duration-300 hover:scale-105"
