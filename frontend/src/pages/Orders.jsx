@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
-import NavBar from "../components/NavBar/";
+import NavBar from "../components/NavigationBar";
 import { Container, Row, Col, Card, Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
@@ -16,7 +16,7 @@ export default function Orders() {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization: auth.token,
+              Authorization: `Bearer ${auth.token}`,
             },
           }
         );
@@ -27,7 +27,7 @@ export default function Orders() {
         console.log(orders);
         setOrders(orders);
       } catch (error) {
-        throw new Error(error);
+        console.error("Error fetching orders:", error);
       }
     };
     fetchOrders();

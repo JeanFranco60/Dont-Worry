@@ -7,6 +7,8 @@ import Login from "./pages/Login";
 import LogOut from "./pages/LogOutPage";
 import Register from "./pages/Register";
 import Accessories from "./pages/Accessories";
+import Cart from "./pages/shopping/Cart";
+import Orders from "./pages/Orders";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,7 +17,9 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/ordenes" element={<Orders />} />
         <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
         <Route path="/login" element={<Login />} />

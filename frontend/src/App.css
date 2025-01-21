@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Chewy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap");
+
 /*--------------------- .whatsapp-button ------------------ */
 .whatsapp-button {
   position: fixed;
@@ -103,4 +106,35 @@
   }
 }
 
-/* En tu archivo CSS */
+/*Shopping Cart */
+
+body {
+  background-color: white;
+}
+
+.individual-product h4 {
+  font-size: large;
+}
+
+.individual-product {
+  max-height: 300px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.product-pic {
+  height: 120px;
+  object-fit: cover;
+}
+
+.no-hover {
+  min-width: 35px;
+  width: 4vw;
+  text-align: center;
+  border: none;
+}
+
+.no-hover:focus {
+  border-color: inherit;
+  box-shadow: none;
+}

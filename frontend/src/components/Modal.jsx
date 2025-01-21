@@ -7,8 +7,19 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../redux/shoppingCartReducer";
+import { toast } from "sonner";
 
-export function ProductModal({ product, addToCart, isOpen, onClose }) {
+export function ProductModal({ product, isOpen, onClose }) {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product) => {
+    dispatch(addProduct({ ...product, qty: 1 })); // Agregar con cantidad predeterminada de 1
+    toast(`${product.name} añadido al carrito`);
+    onClose(); // Cierra el modal
+  };
+
   if (!product) return null;
 
   return (
@@ -26,7 +37,7 @@ export function ProductModal({ product, addToCart, isOpen, onClose }) {
         {/* Contenido principal con desplazamiento */}
         <div
           className="flex flex-col md:flex-row gap-6 py-4 overflow-auto"
-          style={{ maxHeight: "calc(80vh - 100px)" }} // Limita la altura para desplazamiento interno
+          style={{ maxHeight: "calc(80vh - 100px)" }}
         >
           {/* Imagen destacada del producto */}
           <div className="flex-1 max-w-md mx-auto md:mx-0 md:max-w-none">
@@ -34,7 +45,7 @@ export function ProductModal({ product, addToCart, isOpen, onClose }) {
               src={`${import.meta.env.VITE_IMG_PATH}${product.pic}`}
               alt={product.name}
               className="w-full h-auto object-contain rounded-lg shadow-md"
-              style={{ maxHeight: "400px" }} // Asegura que la imagen no sea demasiado alta
+              style={{ maxHeight: "400px" }}
             />
           </div>
 
@@ -57,7 +68,7 @@ export function ProductModal({ product, addToCart, isOpen, onClose }) {
               <Button
                 variant="outline"
                 className="w-full sm:w-auto"
-                onClick={() => addToCart(product.id)}
+                onClick={() => handleAddToCart(product)}
               >
                 Agregar al carrito
               </Button>

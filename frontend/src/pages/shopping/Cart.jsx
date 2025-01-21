@@ -1,6 +1,6 @@
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Footer from "../../components/Footer";
-import Navbar from "../../components/NavBar";
+import Navbar from "../../components/NavigationBar";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ShoppingCartList from "../../components/Shopping/ShoppingCartList";
@@ -21,7 +21,7 @@ function Cart() {
   const calculateSubTotal = () => {
     let total = 0;
     for (const product of products) {
-      total += product.qty * product.price[product.volume];
+      total += product.qty * product.price; // Eliminado cálculo con `volume`
     }
     return total.toFixed(2);
   };
@@ -40,8 +40,8 @@ function Cart() {
 
   const saveOrder = async () => {
     const listToSend = products.map((product) => {
-      const { id, name, qty, volume, isToGo } = product;
-      return { id, name, qty, volume, isToGo };
+      const { id, name, qty, isToGo } = product; // Eliminado `volume`
+      return { id, name, qty, isToGo };
     });
     const response = await fetch(import.meta.env.VITE_API_URL + "/orders", {
       method: "POST",

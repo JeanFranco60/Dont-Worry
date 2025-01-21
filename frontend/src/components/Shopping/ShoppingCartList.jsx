@@ -1,20 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../../styles/CartShopping.module.css";
 import { Button, Form } from "react-bootstrap";
 import { addProduct, removeProduct } from "../../redux/shoppingCartReducer";
+import { FaTrash } from "react-icons/fa"; // Importar el icono de la papelera
 
 export default function ShoppingCartList() {
   const { products } = useSelector((state) => state.shoppingCart);
   const dispatch = useDispatch();
 
+  // Filtrar productos no deseados (por ejemplo, con un id específico)
+  const filteredProducts = products.filter((product) => !product.default);
+
   return (
     <>
       <h2>Tu carrito</h2>
-      {products.length > 0 ? (
-        products.map((product) => {
-          const { price, volume, qty, name, categoryId, pic } = product;
+      {filteredProducts.length > 0 ? (
+        filteredProducts.map((product) => {
+          const { price, qty, name, pic } = product;
 
-          const totalPrice = (qty * price[volume]).toFixed(2);
+          const totalPrice = (qty * price).toFixed(2);
 
           const incrementQuantity = () => {
             dispatch(addProduct({ ...product, qty: 1 }));
@@ -26,19 +29,16 @@ export default function ShoppingCartList() {
 
           return (
             <div
-              className={`container border rounded-4 card ${styles["individual-product"]}`}
+              className="container border rounded-4 card individual-product"
               key={product.id}
             >
               <div className="row">
                 <div className="col-7">
-                  <h4 className="mt-4">
-                    {name}{" "}
-                    {categoryId == 1 && `${volume == "base" ? 250 : volume}ml`}
-                  </h4>
+                  <h4 className="mt-4">{name}</h4>
                   <img
                     src={`/img/${pic}`}
                     alt={product.name}
-                    className={styles["product-pic"]}
+                    className="product-pic"
                   />
                 </div>
                 <div className="col-5 d-flex flex-column justify-content-center align-items-center">
@@ -61,7 +61,7 @@ export default function ShoppingCartList() {
                             onClick={decrementQuantity}
                           >
                             <span className="m-0 p-0">
-                              <i className="bi bi-trash"></i>
+                              <FaTrash />
                             </span>
                           </button>
                         )}
@@ -69,7 +69,7 @@ export default function ShoppingCartList() {
                         <Form.Control
                           type="text"
                           value={qty}
-                          className={styles["no-hover"]}
+                          className="no-hover"
                           readOnly
                         />
                         <Button

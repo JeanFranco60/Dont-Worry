@@ -169,6 +169,15 @@ function NavigationBar() {
             className="text-sm font-medium text-black underline underline-offset-4 transition-transform duration-300 hover:scale-105"
             onClick={() => setIsMenuOpen(false)}
           >
+            CUENTA
+          </Link>
+
+          
+          <Link
+            to="/cart"
+            className="text-sm font-medium text-black underline underline-offset-4 transition-transform duration-300 hover:scale-105"
+            onClick={() => setIsMenuOpen(false)}
+          >
             CARRITO
           </Link>
 
