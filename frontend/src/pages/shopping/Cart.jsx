@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ShoppingCartList from "../../components/Shopping/ShoppingCartList";
 import Payment from "../../components/Shopping/Payment";
-import PayPalButton from "../../components/Shopping/PayPalButton";
+import MercadoPagoButtom from "../../components/Shopping/MercadoPagoButton";
 import Congrats from "../../components/Congrats";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +21,7 @@ function Cart() {
   const calculateSubTotal = () => {
     let total = 0;
     for (const product of products) {
-      total += product.qty * product.price; // Eliminado cálculo con `volume`
+      total += product.qty * product.price;
     }
     return total.toFixed(2);
   };
@@ -40,7 +40,7 @@ function Cart() {
 
   const saveOrder = async () => {
     const listToSend = products.map((product) => {
-      const { id, name, qty, isToGo } = product; // Eliminado `volume`
+      const { id, name, qty, isToGo } = product;
       return { id, name, qty, isToGo };
     });
     const response = await fetch(import.meta.env.VITE_API_URL + "/orders", {
@@ -66,8 +66,11 @@ function Cart() {
 
   return (
     <div className="app-container">
-      <Navbar />
-      <div className="content">
+      <div className="page-black">
+        <Navbar />
+      </div>
+
+      <div className="content mt-24">
         <Container className="mt-4 mb-4">
           <Row>
             <Col xs={12} sm={12} md={8} className="mb-2 mb-md-0">
@@ -88,7 +91,9 @@ function Cart() {
                 >
                   {step === 1 && (
                     <div className="pt-4 pb-3">
-                      <PayPalButton nextStep={nextStep}></PayPalButton>
+                      <MercadoPagoButtom
+                        nextStep={nextStep}
+                      ></MercadoPagoButtom>
                     </div>
                   )}
 

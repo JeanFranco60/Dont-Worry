@@ -138,3 +138,9 @@ body {
   border-color: inherit;
   box-shadow: none;
 }
+
+
+.page-black .fixed {
+  background-color: black !important;
+  color: white !important;
+}

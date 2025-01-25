@@ -7,9 +7,13 @@ import { useSelector } from "react-redux";
 export default function Orders() {
   const auth = useSelector((state) => state.auth);
   const [orders, setOrders] = useState([]);
+
   useEffect(() => {
     const fetchOrders = async () => {
       try {
+        // Verifica que el token esté presente y en el formato correcto
+        console.log("Token enviado:", `Bearer ${auth.token}`);
+
         const response = await fetch(
           import.meta.env.VITE_API_URL + "/orders/myOrders",
           {
@@ -20,9 +24,11 @@ export default function Orders() {
             },
           }
         );
+
         if (!response.ok) {
           throw new Error("API fetch error, !ok");
         }
+
         const { orders } = await response.json();
         console.log(orders);
         setOrders(orders);
@@ -31,7 +37,7 @@ export default function Orders() {
       }
     };
     fetchOrders();
-  }, []);
+  }, [auth.token]); // Agregado auth.token como dependencia para que se ejecute cada vez que el token cambie
 
   const getStatusVariant = (status) => {
     switch (status) {
@@ -45,6 +51,7 @@ export default function Orders() {
         return "secondary";
     }
   };
+
   const calculateTotal = (products) =>
     products
       .reduce(
@@ -57,7 +64,9 @@ export default function Orders() {
 
   return (
     <>
-      <NavBar />
+      <div className="page-black">
+        <NavBar />
+      </div>
       <section className="bg-light py-5">
         <Container>
           <h4 className="mb-4">Tus pedidos</h4>
